@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body class="bg-secondary">
+<header th:replace="~{fragments/commons::nav}">
+</header>
+<main class="p-5 align-content-center container text-light text-center ">
+    <img class="rounded" width="50%" src="/images/hands-heart.jpg" alt="Hands and heart background">
+    <h1 class="border-bottom">Register patient's medical record</h1>
+    <div class="d-flex justify-content-center ">
+        <div class="row g-3">
+            <form   th:method="post"
+                    th:object="${medicalRecordBindingModel}"
+                    th:action="@{/record/register}"
+                    >
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputMainDiagnosis" class="col-form-label ">Main diagnosis</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{mainDiagnosis}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               id="inputMainDiagnosis"
+                               class="form-control"
+                               aria-describedby="mainDiagnosisHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please enter main diagnosis.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputPastConditions" class="col-form-label ">Past conditions</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{pastConditions}"
+                               type="text"
+                               id="inputPastConditions"
+                               class="form-control"
+                               aria-describedby="pastConditionsHelpInline">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputIsSmoke" class="col-form-label ">Is smoke?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{isSmoke}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputIsSmoke"
+                               class="form-control"
+                               aria-describedby="isSmokeHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please check.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputIsDrink" class="col-form-label ">Is drink ?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{isDrink}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputIsDrink"
+                               class="form-control"
+                               aria-describedby="isDrinkHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please check.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputIsDiabetic" class="col-form-label ">Is diabetic ?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{isDiabetic}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputIsDiabetic"
+                               class="form-control"
+                               aria-describedby="isDiabeticHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please check.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputIsHighPressure" class="col-form-label ">Is high pressure ?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{isHighPressure}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputIsHighPressure"
+                               class="form-control"
+                               aria-describedby="isHighPressureHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please check.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputHasAllergies" class="col-form-label ">Has allergies ?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{hasAllergies}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputHasAllergies"
+                               class="form-control"
+                               aria-describedby="hasAllergiesHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please check.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputNameOfAllergies" class="col-form-label ">Name of allergies.</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{nameOfAllergies}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               id="inputNameOfAllergies"
+                               class="form-control"
+                               aria-describedby="nameOfAllergiesHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please name it.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputHasCurrentMedications" class="col-form-label ">Does the patient take medications?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{hasCurrentMedications}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputHasCurrentMedications"
+                               class="form-control"
+                               aria-describedby="hasCurrentMedicationsHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please check.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputNameOfMedications" class="col-form-label ">Name</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{nameOfMedications}"
+                               th:errorclass="is-invalid"
+                               type="text"
+                               id="inputNameOfMedications"
+                               class="form-control"
+                               aria-describedby="nameOfMedicationsHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please name it.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputFamilyIlnessHistory" class="col-form-label ">Family history of ilnesses.</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{familyIlnessHistory}"
+
+                               type="text"
+                               id="inputFamilyIlnessHistory"
+                               class="form-control"
+                               aria-describedby="familyIlnessHistoryHelpInline">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputAccompanyingIlness" class="col-form-label ">Accompanying ilness .</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{accompanyingIlness}"
+
+                               type="text"
+                               id="inputAccompanyingIlness"
+                               class="form-control"
+                               aria-describedby="accompanyingIlnessHelpInline">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputHasSurgicalProceduresInThePast" class="col-form-label ">Has surgical procedures in the past</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{hasSurgicalProceduresInThePast}"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputHasSurgicalProceduresInThePast"
+                               class="form-control"
+                               aria-describedby="hasSurgicalProceduresInThePastHelpInline">
+                        <small
+                               class="invalid-feedback  bg-danger text-light rounded">
+                            Please choose.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputNameOfPatSurgicalProceduresAndDate" class="col-form-label ">Name and date.</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{nameOfPatSurgicalProceduresAndDate}"
+                               th:errorclass="is-invalid"
+                                   type="text"
+                               id="inputNameOfPatSurgicalProceduresAndDate"
+                               class="form-control"
+                               aria-describedby="hasSurgicalProceduresInThePastHelpInline">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputOther" class="col-form-label ">Other.</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{other}"
+
+                               type="text"
+                               id="inputOther"
+                               class="form-control"
+                               aria-describedby="otherHelpInline">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button class="btn btn-primary btn-block w-50" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>
+
+

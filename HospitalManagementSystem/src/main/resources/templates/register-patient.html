@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body class="bg-secondary">
+<header th:replace="~{fragments/commons::nav}">
+</header>
+<main class="p-5 align-content-center container text-light text-center ">
+  <img class="rounded" width="25%" src="/images/hands-heart.jpg" alt="Hands and heart background">
+  <h1 class="border-bottom">Register patient</h1>
+  <div class="d-flex justify-content-center ">
+    <div class="row g-3">
+      <form   th:object="${patientRegisterBindingModel}"
+              th:action="@{/patient/register}"
+              th:method="post">
+
+        <div>
+          <div class="col-auto">
+            <label for="inputFirstName" class="col-form-label ">First name</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{firstName}"
+                   th:errorclass="is-invalid"
+                   required minlength="2" maxlength="20"
+                   type="text"
+                   id="inputFirstName"
+                   class="form-control"
+                   aria-describedby="firstNameHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              First name length must be more than 2 characters</small>
+
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputLastName" class="col-form-label ">Last Name</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{lastName}"
+                   th:errorclass="is-invalid"
+                   required minlength="5" maxlength="20"
+                   type="text"
+                   id="inputLastName"
+                   class="form-control"
+                   aria-describedby="lastNameHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Last name length must be more than 5 characters</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputSex" class="col-form-label ">Sex</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{sex}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   id="inputSex"
+                   class="form-control"
+                   aria-describedby="sexHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">...</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputAge" class="col-form-label ">Age</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{age}" required
+                   th:errorclass="is-invalid"
+                   type="number"
+                   id="inputAge"
+                   class="form-control"
+                   min="0" max="90"
+                   aria-describedby="ageHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">Must be valid age</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputDateOfBirth" class="col-form-label ">Date of birth</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{dateOfBirth}"
+                   th:errorclass="is-invalid"
+                   type="date"
+                   id="inputDateOfBirth"
+                   class="form-control"
+                   aria-describedby="dateOfBirthHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Enter valid date!.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputEgn" class="col-form-label ">Egn</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{egn}"
+                   th:errorclass="is-invalid"
+                   required maxlength="10"
+                   type="number"
+                   id="inputEgn"
+                   class="form-control"
+                   aria-describedby="egnHelpInline">
+            <small
+                    class="invalid-feedback  bg-danger text-light rounded">
+              Enter valid egn!.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputPhoneNumber" class="col-form-label ">Phone number</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{phoneNumber}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   id="inputPhoneNumber"
+                   class="form-control"
+                   aria-describedby="phoneNumberHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please enter a valid phone number.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputFullAddress" class="col-form-label ">Full address</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{fullAddress}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   id="inputFullAddress"
+                   class="form-control"
+                   aria-describedby="fullAddressHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please enter a valid full address</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputOccupation" class="col-form-label ">Occupation</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{occupation}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   id="inputOccupation"
+                   class="form-control"
+                   aria-describedby="occupationHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please enter occupation</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputContactPersonFullName" class="col-form-label ">Contact person full name</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{contactPersonFullName}"
+                   th:errorclass="is-invalid"
+                   type="text"
+                   id="inputContactPersonFullName"
+                   class="form-control"
+                   aria-describedby="contactPersonFullNameHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">Must be valid contact person full name</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputContactPersonPhoneNumber" class="col-form-label ">Contact person phone number</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{contactNumberPhoneNumber}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   id="inputContactPersonPhoneNumber"
+                   class="form-control"
+                   aria-describedby="contactNumberPhoneNumberHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">Please enter a contact person phone number</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputHealthInsured" class="col-form-label ">Health insured</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{healthInsured}"
+                   th:errorclass="is-invalid"
+                   type="checkbox"
+                   id="inputHealthInsured"
+                   class="form-control"
+                   aria-describedby="healthInsuredHelpInline">
+            <small id="healthInsuredError"
+                   class="invalid-feedback  bg-danger text-light rounded">Please choose one of the options.</small>
+          </div>
+        </div>
+
+
+
+        <div>
+          <div class="col-auto">
+            <label for="inputWard" class="col-form-label ">Ward</label>
+          </div>
+          <div class="col-auto">
+            <select id="inputWard"
+                    th:field="*{ward}"
+                    th:errorclass="is-invalid"
+                    name="ward"
+                    class="custom-select"
+                    aria-describedby="wardHelpInline">
+              <option value="" selected>Ward</option>
+              <option
+                      th:each="w : ${T(com.example.hospitalmanagementsystem.models.enums.WardEnum).values()}"
+                      th:text="${w}"
+                      th:value="${w}"
+                      th:selected="${w} == *{ward}"
+              >Oncology</option>
+            </select>
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">Please choose ward.</small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputBedNumber" class="col-form-label ">Bed Number</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{bedNumber}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   id="inputBedNumber"
+                   class="form-control"
+                   aria-describedby="bedNumberHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Enter valid number!.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputRoomNumber" class="col-form-label ">Room number</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{roomNumber}"
+                   th:errorclass="is-invalid"
+                   type="number"
+                   id="inputRoomNumber"
+                   class="form-control"
+                   aria-describedby="roomNumberHelpInline">
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please enter a valid room number.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputMenu" class="col-form-label ">Menu</label>
+          </div>
+          <div class="col-auto">
+            <select id="inputMenu"
+                    th:field="*{menu}"
+                    th:errorclass="is-invalid"
+                    name="menu"
+                    class="custom-select"
+                    aria-describedby="menuHelpInline">
+              <option value="" selected>Menu</option>
+              <option
+                      th:each="m : ${T(com.example.hospitalmanagementsystem.models.enums.TypeOfMenu).values()}"
+                      th:text="${m}"
+                      th:value="${m}"
+                      th:selected="${m}"
+              >Menu</option>
+            </select>
+            <small
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please choose a menu.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputHospitalAdmission" class="col-form-label ">Hospital admission</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{hospitalAdmission}"
+                   th:errorclass="is-invalid"
+                   type="date"
+                   id="inputHospitalAdmission"
+                   class="form-control"
+                   aria-describedby="hospitalAdmissionHelpInline">
+            <small id="hospitalAdmissionError"
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please enter a valid date.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-auto">
+            <label for="inputDischarge" class="col-form-label ">Discharge</label>
+          </div>
+          <div class="col-auto">
+            <input th:field="*{discharge}"
+                   th:errorclass="is-invalid"
+                   type="date"
+                   id="inputDischarge"
+                   class="form-control"
+                   aria-describedby="dischargeHelpInline">
+            <small id="dischargeError"
+                   class="invalid-feedback  bg-danger text-light rounded">
+              Please enter a valid date.
+            </small>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button class="btn btn-primary btn-block w-50" type="submit">Register</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head">
+
+</head>
+<body class="bg-secondary">
+<header th:replace="fragments/commons::nav">
+</header>
+<main role="main" class="bg-secondary">
+
+    <div class="jumbotron text-center">
+        <div class="container text-light text-center">
+            <h2 class="display-3"><strong class="bg-blur rounded">All available</strong></h2>
+            <h2 class="display-3"><strong class="bg-blur rounded">Patients</strong></h2>
+        </div>
+        <div class="row mt-3 mb-3 ">
+            <div
+                    class="col-5 bg-warning rounded m-auto pb-3">
+                <div
+                     class="mt-3 rounded badge-info p-3">
+                      <span  class="p-3">First name</span>
+                    <span  class="p-3">Last name</span>
+                    <span  class="p-3">Ward</span>
+                    <span  class="p-3">Menu</span>
+                </div>
+
+
+            </div>
+            <div class="col-5 bg-warning rounded m-auto pb-3">
+                <h3 class="mySticky bg-gray text-light rounded">Current patients</h3>
+                <div
+                        th:each=""
+                      th:object=""
+                        class="mt-3 rounded badge-info p-3">
+                    <span class="p-3"  th:text="|Nurse - *{ward.getName()}|" >Test</span>
+                    <span class="p-3" th:text="|Number of patients: *{}|"> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>
