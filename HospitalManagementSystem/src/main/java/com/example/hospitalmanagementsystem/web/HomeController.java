@@ -31,6 +31,16 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/ward")
+    public String ward(){
+        return "ward";
+    }
+
+    @GetMapping("/error")
+    public String error(){
+        return "error";
+    }
+
 
 
 

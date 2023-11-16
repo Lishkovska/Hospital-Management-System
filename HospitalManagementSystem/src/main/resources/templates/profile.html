@@ -14,18 +14,20 @@
             <div class="col-md-7">
                 <div class="profile-card p-3 py-4">
                     <div class="text-center"><img src="/images/bolnica.jpg" width="100" class="rounded-circle"></div>
-                    <div class="text-center mt-3" th:object="${nurse}">
-                        <span th:text="*{lastName}" class="bg-secondary p-1 px-4 rounded text-danger"> </span>
+                    <div style="background-color: #ffcd90; color: green; font-weight: bold"
+                            class="text-center mt-3" th:object="${nurse}">
+
+
                         <h5 class="mt-4 mb-0">Last name</h5>
-                        <span th:text="*{username}">  </span>
+                        <span th:text="*{lastName}">  </span>
                         <h5 class="mt-2 mb-0">Username</h5>
-                        <span th:text="*{ward}">  </span>
+                        <span th:text="*{username}">  </span>
                         <h5 class="mt-2 mb-0">Ward</h5>
-                        <span th:text="*{patients.add(patients)}"> </span>
+                        <span th:text="*{ward}"> </span>
                         <h5 class="mt-2 mb-0">Patients</h5>
-                        <span>todo patient list by names</span>
+                        <span th:text="*{patients.size()}"></span>
                         <div class="buttons">
-                            <button class="btn btn-outline-primary px-4">Back</button>
+                            <button class="btn btn-outline-primary px-4" href="/index" role="button">Back</button>
                         </div>
                     </div>
                 </div>

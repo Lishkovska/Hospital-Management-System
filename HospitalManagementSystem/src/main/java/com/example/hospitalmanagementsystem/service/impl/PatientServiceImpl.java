@@ -12,11 +12,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class PatientServiceImpl implements PatientService {
-    // todo ?///medical record
+
     private final PatientRepository patientRepository;
     private final ModelMapper modelMapper;
     private final NurseService nurseService;
@@ -47,19 +48,17 @@ public class PatientServiceImpl implements PatientService {
                 .orElse(null);
     }
      //todo
-    @Override
-    public List<PatientViewModel> findMyPatients(Long id) {
-        return null;
-    }
 
-   /* @Override todo
+
+  @Override
     public List<PatientViewModel> findMyPatients(Long id) {
         return patientRepository
                 .findAllByNurseId(nurseService.findById(id).getId())
                 .stream()
                 .map(patient -> modelMapper.map(patient, PatientViewModel.class))
                 .collect(Collectors.toList());
-    } */
+    }
+
 
     @Override
     public void removePatientById(Long id) {

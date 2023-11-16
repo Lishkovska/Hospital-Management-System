@@ -5,6 +5,7 @@ import com.example.hospitalmanagementsystem.models.service.PatientServiceModel;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PatientService {
     void registerPatient(PatientServiceModel patientServiceModel);

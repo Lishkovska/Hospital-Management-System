@@ -11,11 +11,10 @@ public class PatientViewModel {
     private Long id;
     private String firstName;
     private String lastName;
-    private Ward ward;
-    private KitchenCatering menu;
+    private String ward;
+    private String menu;
 
-    public PatientViewModel() {
-    }
+
 
     public Long getId() {
         return id;
@@ -41,21 +40,19 @@ public class PatientViewModel {
         this.lastName = lastName;
     }
 
-
-    public Ward getWard() {
+    public String getWard() {
         return ward;
     }
 
-    public void setWard(Ward ward) {
+    public void setWard(String ward) {
         this.ward = ward;
     }
 
-
-    public KitchenCatering getMenu() {
+    public String getMenu() {
         return menu;
     }
 
-    public void setMenu(KitchenCatering menu) {
+    public void setMenu(String menu) {
         this.menu = menu;
     }
 }

@@ -46,6 +46,9 @@
 
 
                 <div class="d-flex justify-content-center mt-2">
+                    <p th:if="${bad_credentials}" class="errors alert alert-danger small">
+                        Invalid username or password.
+                    </p>
                     <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
                 </div>
             </form>

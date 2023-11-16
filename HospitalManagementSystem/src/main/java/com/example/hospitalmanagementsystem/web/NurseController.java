@@ -1,14 +1,19 @@
 package com.example.hospitalmanagementsystem.web;
 
 import com.example.hospitalmanagementsystem.models.bindingModels.NurseRegisterBindingModel;
+import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
 import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
+import com.example.hospitalmanagementsystem.models.view.NurseProfileViewModel;
 import com.example.hospitalmanagementsystem.service.NurseService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/nurses")
@@ -57,7 +62,7 @@ public class NurseController {
        return "redirect:auth-login" ;
     }
 
-  /*  @GetMapping("/profile")
+   @GetMapping("/profile")
     public String getProfile(Principal principal, Model model){
         String username = principal.getName();
         NurseEntity nurse = nurseService.getNurse(username);
@@ -72,7 +77,18 @@ public class NurseController {
         model.addAttribute("nurse", nurseProfileViewModel);
         return "profile";
 
-    } */
+    }
+
+   /* @GetMapping("/profile/{id}")
+    public String viewNurseProfileById(@PathVariable("id") Long id,
+                                      Model model) {
+
+        NurseServiceModel nurseProfileViewModel = nurseService.findById(id);
+
+        model.addAttribute("nurseProfile", nurseProfileViewModel);
+
+        return "profile-all-nurses";
+    }*/
 
 
 
