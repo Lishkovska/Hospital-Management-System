@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<header th:replace="fragments/commons::navbar">
+</header>
+<body>
+<div class="jumbotron">
+    <h1 class="display-4">We care!</h1>
+    <img class="rounded" width="50%" src="/images/products-menu.jpg" alt="Products picture">
+    <p class="lead">Our goal is to provide you meal choices that are nutritionally balanced and flavorful.
+        We hope you enjoy our meal program.</p>
+    <hr class="my-4">
+    <p>Every nurse in charge must select type of menu according to some specific requierments.
+        Please click on the link in order to see the menu </p>
+    <p class="lead">
+        <a class="btn btn-success btn-lg" href="/normal-diet" role="button">Normal diet</a>
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/milk-gluten-puree" role="button">Specific diets</a>
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/pevzner" role="button">Pevzner diet</a>
+    </p>
+    <hr class="my-4">
+    <p> Order time
+        BREAKFAST must be ordered by 6:30 pm (the previous evening)
+        LUNCH must be ordered by 10:45 am
+        DINNER must be ordered by 3:45 pm </p>
+    <p class="lead">
+        <a class="btn btn-success btn-lg" href="/nurses/profile" role="button">Back to profile</a>
+    </p>
+</div>
+<footer th:replace="fragments/commons::footer">
+</footer>
+</body>
+</html>
