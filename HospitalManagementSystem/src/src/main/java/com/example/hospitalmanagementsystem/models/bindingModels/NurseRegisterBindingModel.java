@@ -5,6 +5,8 @@ import com.example.hospitalmanagementsystem.models.enums.WardEnum;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class NurseRegisterBindingModel {
@@ -39,7 +41,22 @@ public class NurseRegisterBindingModel {
         @NotNull
         private WardEnum ward;
 
+        private List<Long> allNursesIDs = new ArrayList<>();
+
     public NurseRegisterBindingModel() {
+    }
+
+    public List<Long> getAllNursesIDs() {
+        return allNursesIDs;
+    }
+
+    public void setAllNursesIDs(List<Long> allNursesIDs) {
+        this.allNursesIDs = allNursesIDs;
+    }
+
+    public NurseRegisterBindingModel addNurseId(Long nurseId) {
+        this.allNursesIDs.add(nurseId);
+        return this;
     }
 
     public String getFirstName() {

@@ -14,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
-    //to do sled katovsichki html template sa gotovi da si dobavq permitite
+
    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(
@@ -24,7 +24,8 @@ public class SecurityConfiguration {
                        .requestMatchers("/", "/nurses/login","/ward",  "/nurses/test",
                               "/nurses/login-error").permitAll()
                         .requestMatchers("/record/register").permitAll()
-                      //  .requestMatchers("/record/register").hasRole(RoleEnum.ADMIN.name())
+                      .requestMatchers("/patient/all").hasRole(RoleEnum.ADMIN.name())
+                      .requestMatchers("/current-records").permitAll()
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

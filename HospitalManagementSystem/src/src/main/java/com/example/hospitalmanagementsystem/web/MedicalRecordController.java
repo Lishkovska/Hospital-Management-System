@@ -1,27 +1,36 @@
 package com.example.hospitalmanagementsystem.web;
 
 import com.example.hospitalmanagementsystem.models.bindingModels.MedicalRecordBindingModel;
-import com.example.hospitalmanagementsystem.models.bindingModels.NurseRegisterBindingModel;
+import com.example.hospitalmanagementsystem.models.entity.MedicalRecord;
+import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
 import com.example.hospitalmanagementsystem.models.service.MedicalRecordServiceModel;
-import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
+import com.example.hospitalmanagementsystem.models.view.MedicalRecordViewModel;
+import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.service.MedicalRecordService;
+import com.example.hospitalmanagementsystem.service.NurseService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 public class MedicalRecordController {
     private final ModelMapper modelMapper;
     private final MedicalRecordService medicalRecordService;
+    private final NurseService nurseService;
 
-    public MedicalRecordController(ModelMapper modelMapper, MedicalRecordService medicalRecordService) {
+    public MedicalRecordController(ModelMapper modelMapper, MedicalRecordService medicalRecordService, NurseService nurseService) {
         this.modelMapper = modelMapper;
         this.medicalRecordService = medicalRecordService;
+        this.nurseService = nurseService;
     }
 
     @GetMapping("/record/register")
@@ -49,6 +58,16 @@ public class MedicalRecordController {
 
         return "redirect:/";
         //todo redirect kum nurse profile
+    }
+
+
+    @GetMapping("/current-records")
+    public String getMedicalRecord(Model model){
+        List<MedicalRecordViewModel> records = medicalRecordService.getAllRecords();
+        model.addAttribute("records", records);
+
+        return "medical-record-view";
+
     }
 
 

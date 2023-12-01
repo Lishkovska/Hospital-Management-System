@@ -67,14 +67,7 @@ public class PatientServiceImpl implements PatientService {
 
 //todo
 
-  @Override
-    public List<PatientViewModel> findMyPatients(Long id) {
-        return patientRepository
-                .findAllByNurseId(nurseService.findById(id).getId())
-                .stream()
-                .map(patient -> modelMapper.map(patient, PatientViewModel.class))
-                .collect(Collectors.toList());
-    }
+
 
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.hospitalmanagementsystem.service.impl;
 
+import com.example.hospitalmanagementsystem.event.NurseCreateEvent;
+import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundException;
 import com.example.hospitalmanagementsystem.models.bindingModels.NurseRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
 import com.example.hospitalmanagementsystem.models.enums.RoleEnum;
@@ -10,9 +12,12 @@ import com.example.hospitalmanagementsystem.repository.UserRoleRepository;
 import com.example.hospitalmanagementsystem.service.NurseService;
 import com.example.hospitalmanagementsystem.service.WardService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 
@@ -25,15 +30,18 @@ public class NurseServiceImpl implements NurseService {
     private final PatientRepository patientRepository;
 
     private final UserRoleRepository userRoleRepository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(NurseService.class);
+    private final ApplicationEventPublisher appEventPublisher;
 
     public NurseServiceImpl(NurseRepository nurseRepository, PasswordEncoder passwordEncoder,
-                            ModelMapper modelMapper, WardService wardService, PatientRepository patientRepository, UserRoleRepository userRoleRepository) {
+                            ModelMapper modelMapper, WardService wardService, PatientRepository patientRepository, UserRoleRepository userRoleRepository, ApplicationEventPublisher appEventPublisher) {
         this.nurseRepository = nurseRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.wardService = wardService;
         this.patientRepository = patientRepository;
         this.userRoleRepository = userRoleRepository;
+        this.appEventPublisher = appEventPublisher;
     }
 
 
@@ -47,6 +55,13 @@ public class NurseServiceImpl implements NurseService {
                //(nurseServiceModel.getPatientList());
 
         nurseRepository.saveAndFlush(nurse);
+
+        LOGGER.info("Nurse was registered.");
+
+        NurseCreateEvent nurseCreateEvent = new NurseCreateEvent(this);
+
+
+        appEventPublisher.publishEvent(nurseCreateEvent);
     }
 
     @Override
@@ -76,24 +91,15 @@ public class NurseServiceImpl implements NurseService {
     }
 
     @Override
+    public NurseEntity finddById(Long id) {
+        return nurseRepository.findById(id).orElseThrow(() -> new NurseNotFoundException(id));
+    }
+
+    @Override
     public void save(NurseEntity currentNurse) {
         nurseRepository.saveAndFlush(currentNurse);
     }
 
-
-
-   /* @Override   todo
-    public List<NurseViewModels> findAllPatientsAndCount() {
-        return nurseRepository.findAllByAndCount()
-                .stream()
-                .map(nurseEntity -> {
-                    NurseViewModels nurseViewModels =  new NurseViewModels();
-                    nurseViewModels.setUsername(nurseEntity.getUsername());
-                    nurseViewModels.setCountOfPatients(nurseEntity.getPatientList().size());
-
-                    return nurseViewModels;
-                }).collect(Collectors.toList());
-    } */
 
 
 }

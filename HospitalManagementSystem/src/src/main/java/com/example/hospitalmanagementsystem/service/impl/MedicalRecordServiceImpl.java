@@ -3,11 +3,16 @@ package com.example.hospitalmanagementsystem.service.impl;
 import com.example.hospitalmanagementsystem.models.bindingModels.MedicalRecordBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.MedicalRecord;
 import com.example.hospitalmanagementsystem.models.service.MedicalRecordServiceModel;
+import com.example.hospitalmanagementsystem.models.view.MedicalRecordViewModel;
+import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.repository.MedicalRecordRepository;
 import com.example.hospitalmanagementsystem.service.MedicalRecordService;
 import com.example.hospitalmanagementsystem.service.PatientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MedicalRecordServiceImpl implements MedicalRecordService {
@@ -68,4 +73,29 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
      medicalRecordRepository.save(medicalRecord);
     }
+
+    @Override
+    public List<MedicalRecordViewModel> getAllRecords() {
+        return medicalRecordRepository.findAll().stream().map(record-> new MedicalRecordViewModel(
+                record.getId(),
+                record.getPatientEgn(),
+                record.getMainDiagnosis(),
+                record.getPastConditions(),
+                record.isHasSmoke(),
+                record.isHasDrink(),
+                record.isHasDiabetic(),
+                record.isHasHighPressure(),
+                record.isHasAllergies(),
+                record.getNameOfAllergies(),
+                record.isHasCurrentMedications(),
+                record.getNameOfMedications(),
+                record.getFamilyIlnessHistory(),
+                record.getAccompanyingIlness(),
+                record.isHasSurgicalProceduresInThePast(),
+                record.getNameOfPatSurgicalProceduresAndDate(),
+                record.getOther()
+        )).collect(Collectors.toList());
+    }
+
+
 }

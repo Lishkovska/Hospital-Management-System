@@ -1,25 +1,31 @@
 package com.example.hospitalmanagementsystem.web;
 
+import com.example.hospitalmanagementsystem.event.NurseCreateEvent;
+import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundException;
 import com.example.hospitalmanagementsystem.models.bindingModels.NurseRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
-import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
 import com.example.hospitalmanagementsystem.models.view.NurseProfileViewModel;
 import com.example.hospitalmanagementsystem.service.NurseService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import org.slf4j.Logger;
 
 @Controller
 @RequestMapping("/nurses")
 public class NurseController {
     private final NurseService nurseService;
     private final ModelMapper modelMapper;
+
 
     public NurseController(NurseService nurseService, ModelMapper modelMapper) {
         this.nurseService = nurseService;
@@ -56,10 +62,11 @@ public class NurseController {
             return "redirect:/nurses/register";
         }
 
-     //   nurseService.registerNurse(modelMapper.map(nurseRegisterBindingModel, NurseServiceModel.class));
+
        nurseService.registerNurse(nurseRegisterBindingModel);
-       // return "redirect:auth-register";
+
        return "redirect:auth-login" ;
+
     }
 
    @GetMapping("/profile")
@@ -80,17 +87,20 @@ public class NurseController {
 
     }
 
-   /* @GetMapping("/profile/{id}")
-    public String viewNurseProfileById(@PathVariable("id") Long id,
-                                      Model model) {
+  @GetMapping("/nurses/{id}")
+  public String getNurseById(@PathVariable("id") Long id){
+        throw new NurseNotFoundException(id);
 
-        NurseServiceModel nurseProfileViewModel = nurseService.findById(id);
+  }
 
-        model.addAttribute("nurseProfile", nurseProfileViewModel);
+  @ExceptionHandler(NurseNotFoundException.class)
+  public ModelAndView notFoundNurse(NurseNotFoundException nurseNotFoundException){
+  ModelAndView modelAndView = new ModelAndView("nurse-not-found");
+  modelAndView.addObject("id", nurseNotFoundException.getId());
 
-        return "profile-all-nurses";
-    }*/
+  return modelAndView;
 
+    }
 
 
     @ModelAttribute

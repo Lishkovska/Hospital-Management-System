@@ -15,7 +15,6 @@ public interface PatientService {
 
     Patient findById(Long id);
 
-    List<PatientViewModel> findMyPatients(Long id);
     void removePatientById(Long id);
     List<PatientViewModel> getAllPatients();
 

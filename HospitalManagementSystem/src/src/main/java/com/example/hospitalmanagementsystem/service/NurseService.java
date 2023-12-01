@@ -18,6 +18,7 @@ public interface NurseService {
     NurseServiceModel findById(Long id);
 
     NurseEntity getNurse(String username);
+    NurseEntity finddById(Long id);
 
     void save(NurseEntity currentNurse);
 
