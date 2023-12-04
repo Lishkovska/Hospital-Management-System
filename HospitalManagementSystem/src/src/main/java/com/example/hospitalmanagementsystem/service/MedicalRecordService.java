@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public interface MedicalRecordService {
-    void registerRecord(MedicalRecordServiceModel medicalRecordServiceModel);
+
 
     void registerRecord(MedicalRecordBindingModel medicalRecordBindingModel);
     List<MedicalRecordViewModel> getAllRecords();

@@ -46,7 +46,7 @@ public class WardServiceImpl implements WardService {
                 .orElse(null);
     }
 
-    @Override
+   /* @Override
     public List<WardViewModel> findAllPatientsAndCount() {
         return wardRepository.findAllByAndCount()
                 .stream()
@@ -57,5 +57,5 @@ public class WardServiceImpl implements WardService {
 
                     return wardViewModel;
                 }).collect(Collectors.toList());
-    }
+    } */
 }

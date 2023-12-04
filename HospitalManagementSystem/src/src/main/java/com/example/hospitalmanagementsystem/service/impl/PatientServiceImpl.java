@@ -53,10 +53,6 @@ public class PatientServiceImpl implements PatientService {
 
     }
 
-//    @Override
-//    public void registerPatient(PatientServiceModel patientServiceModel) {
-//
-//    }
 
     @Override
     public Patient findById(Long id) {

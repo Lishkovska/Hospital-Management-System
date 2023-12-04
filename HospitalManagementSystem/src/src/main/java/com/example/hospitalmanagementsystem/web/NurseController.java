@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import org.slf4j.Logger;
+
 
 @Controller
 @RequestMapping("/nurses")

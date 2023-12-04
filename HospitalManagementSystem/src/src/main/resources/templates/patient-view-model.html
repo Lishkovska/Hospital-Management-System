@@ -11,29 +11,76 @@
 <main class="p-5 align-content-center bg-light my-register-div">
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-7">
+            <t class="col-md-7">
                 <div class="profile-card p-3 py-4">
                     <div class="text-center"><img src="/images/ward.jpg" width="100" ></div>
-                    <div style="background-color: #fdff90; color: blue; font-weight: bold"
-                         class="text-center mt-3"
-                         >
+                    <t style="background-color: #fdff90; color: blue; font-weight: bold"
+                         class="text-center mt-3">
                         <h4 style="background-color: #fdff90; color: green; font-weight: bold"> All current patients </h4>
                         <section class="road" th:each="p : ${patients}" th:object="${p}">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr style="background-color: #ffcd90; color: blueviolet; font-weight: bold">
+                                    <th scope="col">First name</th>
 
-                            <h5 class="mt-4 mb-0">First name</h5>
-                            <span th:text="*{firstName}">  </span>
-                            <h5 class="mt-2 mb-0">Last name</h5>
-                            <span th:text="*{lastName}">  </span>
-                            <h5 class="mt-2 mb-0">Ward</h5>
-                            <span th:text="*{ward}"> </span>
-                            <h5 class="mt-2 mb-0">Menu</h5>
-                            <span th:text="*{menu}"></span>
-                            <p class="lead">
-                                <a class="btn btn-success btn-lg" href="/" role="button">Back</a>
-                            </p>
+                                    <th scope="col">Last name</th>
+
+                                    <th scope="col">Ward</th>
+
+                                    <th scope="col">Menu</th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                <tr >
+                                    <th scope="row">
+                                        <span th:text="*{firstName}"> </span>
+                                    </th>
+
+                                    <td>  <span th:text="*{lastName}"> </span>  </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">
+                                        <span th:text="*{ward}"> </span>
+                                    </th>
+
+                                    <td>  <span th:text="*{menu}">  </span> </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">
+                                        <span th:text="*{ward}">  </span>
+                                    </th>
+
+                                    <td>    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">
+                                        <span th:text="*{menu}"></span>
+                                    </th>
+
+                                    <td>      </td>
+
+                                </tr>
+                                </tbody>
+                                <p class="lead">
+                                    <a class="btn btn-success btn-lg" href="/" role="button">Back</a>
+                                </p>
+                            </table>
                         </section>
-                    </div>
 
+
+                    </t>
+
+                    </div>
+            </t>
+
+            </div>
                 </div>
             </div>
         </div>

@@ -18,37 +18,15 @@ import java.util.stream.Collectors;
 public class MedicalRecordServiceImpl implements MedicalRecordService {
     private final MedicalRecordRepository medicalRecordRepository;
     private final ModelMapper modelMapper;
-    private final PatientService patientService;
+  
 
-    public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository, ModelMapper modelMapper, PatientService patientService) {
+    public MedicalRecordServiceImpl(MedicalRecordRepository medicalRecordRepository, ModelMapper modelMapper) {
         this.medicalRecordRepository = medicalRecordRepository;
         this.modelMapper = modelMapper;
-        this.patientService = patientService;
-    }
-
-@Override
-    public void registerRecord(MedicalRecordServiceModel medicalRecordServiceModel) {
-        MedicalRecord medicalRecord = modelMapper.map(medicalRecordServiceModel, MedicalRecord.class);
-        medicalRecord.setPatientEgn(medicalRecordServiceModel.getPatientEgn());
-        medicalRecord.setHasDiabetic(medicalRecordServiceModel.isHasDiabetic());
-        medicalRecord.setHasDrink(medicalRecordServiceModel.isHasDrink());
-        medicalRecord.setHasCurrentMedications(medicalRecordServiceModel.isHasCurrentMedications());
-        medicalRecord.setNameOfMedications(medicalRecordServiceModel.getNameOfMedications());
-        medicalRecord.setAccompanyingIlness(medicalRecordServiceModel.getAccompanyingIlness());
-        medicalRecord.setFamilyIlnessHistory(medicalRecordServiceModel.getFamilyIlnessHistory());
-        medicalRecord.setHasAllergies(medicalRecordServiceModel.isHasAllergies());
-        medicalRecord.setHasSurgicalProceduresInThePast(medicalRecordServiceModel.isHasSurgicalProceduresInThePast());
-        medicalRecord.setHasHighPressure(medicalRecordServiceModel.isHasHighPressure());
-        medicalRecord.setMainDiagnosis(medicalRecordServiceModel.getMainDiagnosis());
-        medicalRecord.setNameOfAllergies(medicalRecordServiceModel.getNameOfMedications());
-        medicalRecord.setNameOfPatSurgicalProceduresAndDate(medicalRecordServiceModel.getNameOfPatSurgicalProceduresAndDate());
-        medicalRecord.setOther(medicalRecordServiceModel.getOther());
-        medicalRecord.setPastConditions(medicalRecordServiceModel.getPastConditions());
-        medicalRecord.setHasSmoke(medicalRecordServiceModel.isHasSmoke());
-
-        medicalRecordRepository.save(medicalRecord);
 
     }
+
+
 
     @Override
     public void registerRecord(MedicalRecordBindingModel medicalRecordBindingModel) {

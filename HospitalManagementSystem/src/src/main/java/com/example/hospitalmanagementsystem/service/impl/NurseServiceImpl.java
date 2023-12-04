@@ -34,7 +34,9 @@ public class NurseServiceImpl implements NurseService {
     private final ApplicationEventPublisher appEventPublisher;
 
     public NurseServiceImpl(NurseRepository nurseRepository, PasswordEncoder passwordEncoder,
-                            ModelMapper modelMapper, WardService wardService, PatientRepository patientRepository, UserRoleRepository userRoleRepository, ApplicationEventPublisher appEventPublisher) {
+                            ModelMapper modelMapper, WardService wardService,
+                            PatientRepository patientRepository,
+                            UserRoleRepository userRoleRepository, ApplicationEventPublisher appEventPublisher) {
         this.nurseRepository = nurseRepository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
@@ -77,12 +79,6 @@ public class NurseServiceImpl implements NurseService {
                 .findByUsername(username).orElse(null);
     }
 
-    @Override
-    public NurseServiceModel findById(Long id) {
-        return nurseRepository.findById(id)
-                .map(nurse -> modelMapper.map(nurse, NurseServiceModel.class))
-                .orElse(null);
-    }
 
     @Override
     public NurseEntity getNurse(String username) {
@@ -90,10 +86,6 @@ public class NurseServiceImpl implements NurseService {
                 .orElseThrow(() -> new UsernameNotFoundException("Nurse with " + username + " not found!"));
     }
 
-    @Override
-    public NurseEntity finddById(Long id) {
-        return nurseRepository.findById(id).orElseThrow(() -> new NurseNotFoundException(id));
-    }
 
     @Override
     public void save(NurseEntity currentNurse) {

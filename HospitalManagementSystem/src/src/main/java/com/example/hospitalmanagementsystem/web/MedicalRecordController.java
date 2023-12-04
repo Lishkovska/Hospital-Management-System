@@ -53,7 +53,7 @@ public class MedicalRecordController {
 
         }
 
-        medicalRecordService.registerRecord(modelMapper.map(medicalRecordBindingModel, MedicalRecordServiceModel.class));
+        medicalRecordService.registerRecord(medicalRecordBindingModel);
 
 
         return "redirect:/";

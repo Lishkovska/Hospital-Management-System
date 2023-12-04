@@ -15,10 +15,8 @@ public interface NurseService {
     boolean findByUsername(String username);
     NurseEntity findNurseByUsername(String username);
 
-    NurseServiceModel findById(Long id);
 
     NurseEntity getNurse(String username);
-    NurseEntity finddById(Long id);
 
     void save(NurseEntity currentNurse);
 

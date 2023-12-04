@@ -10,5 +10,5 @@ public interface WardService {
     void initWardName();
 
     Ward findByWardNameEnum(WardEnum wardEnum);
-    List<WardViewModel> findAllPatientsAndCount();
+  //  List<WardViewModel> findAllPatientsAndCount();
 }
