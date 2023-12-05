@@ -14,7 +14,13 @@ public class PatientViewModel {
     private String ward;
     private String menu;
 
-
+    public PatientViewModel(Long id, String firstName, String lastName, String ward, String menu) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ward = ward;
+        this.menu = menu;
+    }
 
     public Long getId() {
         return id;

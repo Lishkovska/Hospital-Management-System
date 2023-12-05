@@ -14,16 +14,16 @@ public class MedicalRecord extends BaseEntity{
     private String patientEgn;
     @Column(nullable = false, name = "main_diagnosis", columnDefinition = "text")
     private String mainDiagnosis;
-    @Column(nullable = false, name = "past_conditions", columnDefinition = "text")
+    @Column( name = "past_conditions", columnDefinition = "text")
     private String pastConditions;
     @Column
-    private boolean isSmoke;
+    private boolean hasSmoke;
     @Column
-    private boolean isDrink;
+    private boolean hasDrink;
     @Column
-    private boolean isDiabetic;
+    private boolean hasDiabetic;
     @Column
-    private boolean isHighPressure;
+    private boolean hasHighPressure;
     @Column
     private boolean hasAllergies;
     @Column(name = "allergies", columnDefinition = "text")
@@ -72,36 +72,36 @@ public class MedicalRecord extends BaseEntity{
         this.pastConditions = pastConditions;
     }
 
-    public boolean isSmoke() {
-        return isSmoke;
+    public boolean isHasSmoke() {
+        return hasSmoke;
     }
 
-    public void setSmoke(boolean smoke) {
-        isSmoke = smoke;
+    public void setHasSmoke(boolean hasSmoke) {
+        this.hasSmoke = hasSmoke;
     }
 
-    public boolean isDrink() {
-        return isDrink;
+    public boolean isHasDrink() {
+        return hasDrink;
     }
 
-    public void setDrink(boolean drink) {
-        isDrink = drink;
+    public void setHasDrink(boolean hasDrink) {
+        this.hasDrink = hasDrink;
     }
 
-    public boolean isDiabetic() {
-        return isDiabetic;
+    public boolean isHasDiabetic() {
+        return hasDiabetic;
     }
 
-    public void setDiabetic(boolean diabetic) {
-        isDiabetic = diabetic;
+    public void setHasDiabetic(boolean hasDiabetic) {
+        this.hasDiabetic = hasDiabetic;
     }
 
-    public boolean isHighPressure() {
-        return isHighPressure;
+    public boolean isHasHighPressure() {
+        return hasHighPressure;
     }
 
-    public void setHighPressure(boolean highPressure) {
-        isHighPressure = highPressure;
+    public void setHasHighPressure(boolean hasHighPressure) {
+        this.hasHighPressure = hasHighPressure;
     }
 
     public boolean isHasAllergies() {

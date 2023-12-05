@@ -1,6 +1,9 @@
 package com.example.hospitalmanagementsystem.service.impl;
 
+import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
+import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
 import com.example.hospitalmanagementsystem.models.entity.Patient;
+import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
 import com.example.hospitalmanagementsystem.models.service.PatientServiceModel;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.repository.PatientRepository;
@@ -8,7 +11,9 @@ import com.example.hospitalmanagementsystem.service.KitchenService;
 import com.example.hospitalmanagementsystem.service.NurseService;
 import com.example.hospitalmanagementsystem.service.PatientService;
 import com.example.hospitalmanagementsystem.service.WardService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,36 +38,48 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void registerPatient(PatientServiceModel patientServiceModel) {
-        Patient patient = modelMapper.map(patientServiceModel, Patient.class);
-        patient.setMenu(kitchenService.findByNameMenuEnum(patientServiceModel.getMenu()));
-        patient.setWard(wardService.findByWardNameEnum(patientServiceModel.getWard()));
-        patient.setNurse(patientServiceModel.getNurse());
+    @Transactional
+    public void registerPatient(PatientRegisterBindingModel patientRegisterBindingModel, UserDetails userDetails) {
+        Patient patient = modelMapper.map(patientRegisterBindingModel, Patient.class);
+        patient.setMenu(kitchenService.findByTypeOfMenu(patientRegisterBindingModel.getMenu()));
+        patient.setWard(wardService.findByWardNameEnum(patientRegisterBindingModel.getWard()));
+        NurseEntity currentNurse = nurseService.findNurseByUsername(userDetails.getUsername());
+        patient.setNurse(currentNurse);
+      //  patient.setNurse(nurseService.findByNurseId(patientServiceModel.getNurse().getId()));
 
-        patientRepository.save(patient);
+        patientRepository.saveAndFlush(patient);
+        currentNurse.getPatientList().add(patient);
+        nurseService.save(currentNurse);
+
     }
+
 
     @Override
     public Patient findById(Long id) {
         return patientRepository.findById(id)
                 .orElse(null);
     }
-     //todo
 
 
-  @Override
-    public List<PatientViewModel> findMyPatients(Long id) {
-        return patientRepository
-                .findAllByNurseId(nurseService.findById(id).getId())
-                .stream()
-                .map(patient -> modelMapper.map(patient, PatientViewModel.class))
-                .collect(Collectors.toList());
-    }
+//todo
+
+
 
 
     @Override
     public void removePatientById(Long id) {
         patientRepository.deleteById(id);
+    }
+
+    @Override
+    public List<PatientViewModel> getAllPatients() {
+        return patientRepository.findAll().stream().map(patient-> new PatientViewModel(
+                patient.getId(),
+                patient.getFirstName(),
+                patient.getLastName(),
+                patient.getWard().getName().name(),
+                patient.getMenu().getTypeOfMenu().name()
+        )).collect(Collectors.toList());
     }
 
 

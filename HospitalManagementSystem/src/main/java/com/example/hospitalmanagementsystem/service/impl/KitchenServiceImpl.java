@@ -44,5 +44,11 @@ public class KitchenServiceImpl implements KitchenService {
         return kitchenRepository.findByTypeOfMenu(typeOfMenu.getTypeOfMenu())
                 .orElse(null);
     }
+
+    @Override
+    public KitchenCatering findByTypeOfMenu(TypeOfMenu menu) {
+        return kitchenRepository.findByTypeOfMenu(menu)
+                .orElse(null);
+    }
 }
 

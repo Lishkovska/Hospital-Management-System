@@ -21,9 +21,9 @@ public class PatientRegisterBindingModel {
     @NotNull
     private LocalDate dateOfBirth;
 
-    private Integer egn; // da promenq imeto ako trqbva
+    private String egn; // da promenq imeto ako trqbva
     @NotNull
-    private Integer phoneNumber;
+    private String phoneNumber;
     @NotNull
     private String fullAddress;
     @NotNull
@@ -99,19 +99,19 @@ public class PatientRegisterBindingModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getEgn() {
+    public String getEgn() {
         return egn;
     }
 
-    public void setEgn(Integer egn) {
+    public void setEgn(String egn) {
         this.egn = egn;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

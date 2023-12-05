@@ -13,8 +13,8 @@ public class PatientServiceModel {
     private String sex;
     private int age;
     private LocalDate dateOfBirth;
-    private Integer egn; // da promenq imeto ako trqbva
-    private Integer phoneNumber;
+    private String egn; // da promenq imeto ako trqbva
+    private String phoneNumber;
     private String fullAddress;
     private String occupation;
     private String contactPersonFullName;
@@ -73,19 +73,19 @@ public class PatientServiceModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getEgn() {
+    public String getEgn() {
         return egn;
     }
 
-    public void setEgn(Integer egn) {
+    public void setEgn(String egn) {
         this.egn = egn;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

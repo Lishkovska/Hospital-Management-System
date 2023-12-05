@@ -2,7 +2,6 @@ package com.example.hospitalmanagementsystem.service.impl;
 
 import com.example.hospitalmanagementsystem.models.entity.Ward;
 import com.example.hospitalmanagementsystem.models.enums.WardEnum;
-import com.example.hospitalmanagementsystem.models.view.NurseViewModels;
 import com.example.hospitalmanagementsystem.models.view.WardViewModel;
 import com.example.hospitalmanagementsystem.service.WardService;
 import com.example.hospitalmanagementsystem.repository.WardRepository;
@@ -47,7 +46,7 @@ public class WardServiceImpl implements WardService {
                 .orElse(null);
     }
 
-    @Override
+   /* @Override
     public List<WardViewModel> findAllPatientsAndCount() {
         return wardRepository.findAllByAndCount()
                 .stream()
@@ -58,5 +57,5 @@ public class WardServiceImpl implements WardService {
 
                     return wardViewModel;
                 }).collect(Collectors.toList());
-    }
+    } */
 }

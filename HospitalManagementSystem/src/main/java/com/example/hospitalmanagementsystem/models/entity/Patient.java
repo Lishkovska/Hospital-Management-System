@@ -18,7 +18,7 @@ public class Patient extends BaseEntity{
     @Column(nullable = false)
     private LocalDate dateOfBirth;
     @Column(nullable = false,unique = true)
-    private Integer egn; // da promenq imeto ako trqbva
+    private String egn; // da promenq imeto ako trqbva
     @Column(nullable = false, name = "phone_number")
     private Integer phoneNumber;
     @Column(nullable = false, name = "full_address", columnDefinition = "text")
@@ -27,7 +27,7 @@ public class Patient extends BaseEntity{
     @Column(nullable = false, name = "contact_person")
     private String contactPersonFullName;
     @Column(nullable = false, name = "contact_person_phone_number")
-    private Integer contactNumberPhoneNumber;
+    private String contactNumberPhoneNumber;
     @Column
     private boolean isHealthInsured;
     @ManyToOne
@@ -99,11 +99,11 @@ public class Patient extends BaseEntity{
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getEgn() {
+    public String getEgn() {
         return egn;
     }
 
-    public void setEgn(Integer egn) {
+    public void setEgn(String egn) {
         this.egn = egn;
     }
 
@@ -139,11 +139,11 @@ public class Patient extends BaseEntity{
         this.contactPersonFullName = contactPersonFullName;
     }
 
-    public Integer getContactNumberPhoneNumber() {
+    public String getContactNumberPhoneNumber() {
         return contactNumberPhoneNumber;
     }
 
-    public void setContactNumberPhoneNumber(Integer contactNumberPhoneNumber) {
+    public void setContactNumberPhoneNumber(String contactNumberPhoneNumber) {
         this.contactNumberPhoneNumber = contactNumberPhoneNumber;
     }
 

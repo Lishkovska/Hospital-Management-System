@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/commons::head}"></head>
+<head th:replace="fragments/commons::head">
+    <title>Register record</title></head>
 <body class="bg-secondary">
-<header th:replace="~{fragments/commons::nav}">
-</header>
+<header th:replace="fragments/commons::navbar"></header>
 <main class="p-5 align-content-center container text-light text-center ">
     <img class="rounded" width="50%" src="/images/hands-heart.jpg" alt="Hands and heart background">
     <h1 class="border-bottom">Register patient's medical record</h1>
     <div class="d-flex justify-content-center ">
         <div class="row g-3">
-            <form   th:method="post"
-                    th:object="${medicalRecordBindingModel}"
-                    th:action="@{/record/register}"
-                    >
+            <form th:method="post"
+                  th:object="${medicalRecordBindingModel}"
+                  th:action="@{/record/register}">
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputEgn" class="col-form-label ">Egn</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{patientEgn}"
+                               th:errorclass="is-invalid"
+                               required maxlength="10"
+                               type="number"
+                               id="inputEgn"
+                               class="form-control"
+                               aria-describedby="egnHelpInline">
+                        <small
+                                class="invalid-feedback  bg-danger text-light rounded">
+                            Enter valid egn!.
+                        </small>
+                    </div>
+                </div>
 
                 <div>
                     <div class="col-auto">
@@ -47,15 +65,32 @@
 
                 <div>
                     <div class="col-auto">
-                        <label for="inputIsSmoke" class="col-form-label ">Is smoke?</label>
+                        <label for="inputHasSmoke" class="col-form-label ">Do you smoke</label>
                     </div>
                     <div class="col-auto">
-                        <input th:field="*{isSmoke}"
+                        <input th:field="*{hasSmoke}"
                                th:errorclass="is-invalid"
                                type="checkbox"
-                               id="inputIsSmoke"
+                               id="inputHasSmoke"
                                class="form-control"
-                               aria-describedby="isSmokeHelpInline">
+                               aria-describedby="hasSmokeHelpInline">
+                        <small id="hasSmokeError"
+                               class="invalid-feedback  bg-danger text-light rounded">Please choose one of the options.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-auto">
+                        <label for="inputHasDrink" class="col-form-label ">Do you drink ?</label>
+                    </div>
+                    <div class="col-auto">
+                        <input th:field="*{hasDrink}"
+                               th:value="true"
+                               th:errorclass="is-invalid"
+                               type="checkbox"
+                               id="inputHasDrink"
+                               class="form-control"
+                               aria-describedby="hasDrinkHelpInline">
                         <small
                                class="invalid-feedback  bg-danger text-light rounded">
                             Please check.</small>
@@ -64,15 +99,16 @@
 
                 <div>
                     <div class="col-auto">
-                        <label for="inputIsDrink" class="col-form-label ">Is drink ?</label>
+                        <label for="inputHasDiabetic" class="col-form-label ">Are you diabetic ?</label>
                     </div>
                     <div class="col-auto">
-                        <input th:field="*{isDrink}"
+                        <input th:field="*{hasDiabetic}"
+                               th:value="true"
                                th:errorclass="is-invalid"
                                type="checkbox"
-                               id="inputIsDrink"
+                               id="inputHasDiabetic"
                                class="form-control"
-                               aria-describedby="isDrinkHelpInline">
+                               aria-describedby="hasDiabeticHelpInline">
                         <small
                                class="invalid-feedback  bg-danger text-light rounded">
                             Please check.</small>
@@ -81,32 +117,16 @@
 
                 <div>
                     <div class="col-auto">
-                        <label for="inputIsDiabetic" class="col-form-label ">Is diabetic ?</label>
+                        <label for="inputHasHighPressure" class="col-form-label ">Do you have high pressure ?</label>
                     </div>
                     <div class="col-auto">
-                        <input th:field="*{isDiabetic}"
+                        <input th:field="*{hasHighPressure}"
+                               th:value="true"
                                th:errorclass="is-invalid"
                                type="checkbox"
-                               id="inputIsDiabetic"
+                               id="inputHasHighPressure"
                                class="form-control"
-                               aria-describedby="isDiabeticHelpInline">
-                        <small
-                               class="invalid-feedback  bg-danger text-light rounded">
-                            Please check.</small>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="col-auto">
-                        <label for="inputIsHighPressure" class="col-form-label ">Is high pressure ?</label>
-                    </div>
-                    <div class="col-auto">
-                        <input th:field="*{isHighPressure}"
-                               th:errorclass="is-invalid"
-                               type="checkbox"
-                               id="inputIsHighPressure"
-                               class="form-control"
-                               aria-describedby="isHighPressureHelpInline">
+                               aria-describedby="hasHighPressureHelpInline">
                         <small
                                class="invalid-feedback  bg-danger text-light rounded">
                             Please check.</small>
@@ -119,6 +139,7 @@
                     </div>
                     <div class="col-auto">
                         <input th:field="*{hasAllergies}"
+                               th:value="true"
                                th:errorclass="is-invalid"
                                type="checkbox"
                                id="inputHasAllergies"
@@ -153,6 +174,7 @@
                     </div>
                     <div class="col-auto">
                         <input th:field="*{hasCurrentMedications}"
+                               th:value="true"
                                th:errorclass="is-invalid"
                                type="checkbox"
                                id="inputHasCurrentMedications"
@@ -187,7 +209,6 @@
                     </div>
                     <div class="col-auto">
                         <input th:field="*{familyIlnessHistory}"
-
                                type="text"
                                id="inputFamilyIlnessHistory"
                                class="form-control"
@@ -201,7 +222,6 @@
                     </div>
                     <div class="col-auto">
                         <input th:field="*{accompanyingIlness}"
-
                                type="text"
                                id="inputAccompanyingIlness"
                                class="form-control"
@@ -215,6 +235,7 @@
                     </div>
                     <div class="col-auto">
                         <input th:field="*{hasSurgicalProceduresInThePast}"
+                               th:value="true"
                                th:errorclass="is-invalid"
                                type="checkbox"
                                id="inputHasSurgicalProceduresInThePast"
@@ -246,7 +267,6 @@
                     </div>
                     <div class="col-auto">
                         <input th:field="*{other}"
-
                                type="text"
                                id="inputOther"
                                class="form-control"

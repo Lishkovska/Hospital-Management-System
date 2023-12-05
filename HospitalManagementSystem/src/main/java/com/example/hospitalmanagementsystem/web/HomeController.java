@@ -41,13 +41,4 @@ public class HomeController {
         return "error";
     }
 
-
-
-
-   /* @GetMapping("nurses/test")
-    public String testConfirm(Model model){
-        model.addAttribute("wards", wardService.findAllPatientsAndCount() );
-
-        return "home-test";
-    } */
 }

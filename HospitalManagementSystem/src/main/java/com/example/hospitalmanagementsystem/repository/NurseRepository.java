@@ -13,7 +13,6 @@ public interface NurseRepository extends JpaRepository<NurseEntity, Long> {
     Optional<NurseEntity> findByUsername(String username);
     Optional<NurseEntity> findAllById(Long id);
 
-    @Query("SELECT n FROM NurseEntity n" + " ORDER BY size(n.patientList) ASC ")
-    List<NurseEntity> findAllByAndCount();
+
 
 }

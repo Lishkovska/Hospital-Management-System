@@ -16,8 +16,10 @@ public class NurseProfileViewModel {
         this.username = username;
         this.lastName = lastName;
         this.ward = ward;
-        this.patients = new ArrayList<>();
+      //  this.patients = new ArrayList<>();
+        this.patients = patients;
     }
+
 
     public String getUsername() {
         return username;

@@ -19,7 +19,7 @@ public class NurseServiceModel {
   //  private Set<UserRole> roles;
     private int age;
     private LocalDate dateOfBirth;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String fullAddress;
     private Integer professionalNumber;
     private String speciality;
@@ -95,11 +95,11 @@ public class NurseServiceModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

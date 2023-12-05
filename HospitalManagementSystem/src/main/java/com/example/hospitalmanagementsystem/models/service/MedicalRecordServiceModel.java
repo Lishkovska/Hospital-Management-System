@@ -9,10 +9,10 @@ public class MedicalRecordServiceModel {
     private Long id;
     private String mainDiagnosis;
     private String pastConditions;
-    private boolean isSmoke;
-    private boolean isDrink;
-    private boolean isDiabetic;
-    private boolean isHighPressure;
+    private boolean hasSmoke;
+    private boolean hasDrink;
+    private boolean hasDiabetic;
+    private boolean hasHighPressure;
     private boolean hasAllergies;
     private String nameOfAllergies;
     private boolean hasCurrentMedications;
@@ -58,36 +58,36 @@ public class MedicalRecordServiceModel {
         this.pastConditions = pastConditions;
     }
 
-    public boolean isSmoke() {
-        return isSmoke;
+    public boolean isHasSmoke() {
+        return hasSmoke;
     }
 
-    public void setSmoke(boolean smoke) {
-        isSmoke = smoke;
+    public void setHasSmoke(boolean hasSmoke) {
+        this.hasSmoke = hasSmoke;
     }
 
-    public boolean isDrink() {
-        return isDrink;
+    public boolean isHasDrink() {
+        return hasDrink;
     }
 
-    public void setDrink(boolean drink) {
-        isDrink = drink;
+    public void setHasDrink(boolean hasDrink) {
+        this.hasDrink = hasDrink;
     }
 
-    public boolean isDiabetic() {
-        return isDiabetic;
+    public boolean isHasDiabetic() {
+        return hasDiabetic;
     }
 
-    public void setDiabetic(boolean diabetic) {
-        isDiabetic = diabetic;
+    public void setHasDiabetic(boolean hasDiabetic) {
+        this.hasDiabetic = hasDiabetic;
     }
 
-    public boolean isHighPressure() {
-        return isHighPressure;
+    public boolean isHasHighPressure() {
+        return hasHighPressure;
     }
 
-    public void setHighPressure(boolean highPressure) {
-        isHighPressure = highPressure;
+    public void setHasHighPressure(boolean hasHighPressure) {
+        this.hasHighPressure = hasHighPressure;
     }
 
     public boolean isHasAllergies() {

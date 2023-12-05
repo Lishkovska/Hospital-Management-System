@@ -1,25 +1,31 @@
 package com.example.hospitalmanagementsystem.web;
 
+import com.example.hospitalmanagementsystem.event.NurseCreateEvent;
+import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundException;
 import com.example.hospitalmanagementsystem.models.bindingModels.NurseRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
-import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
 import com.example.hospitalmanagementsystem.models.view.NurseProfileViewModel;
 import com.example.hospitalmanagementsystem.service.NurseService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+
 
 @Controller
 @RequestMapping("/nurses")
 public class NurseController {
     private final NurseService nurseService;
     private final ModelMapper modelMapper;
+
 
     public NurseController(NurseService nurseService, ModelMapper modelMapper) {
         this.nurseService = nurseService;
@@ -45,7 +51,7 @@ public class NurseController {
                             "org.springframework.validation.BindingResult.nurseRegisterBindingModel",
                             bindingResult);
 
-            return "redirect:auth-register";
+            return "redirect:/nurses/register";
         }
 
         boolean isUsernameExists = nurseService
@@ -53,25 +59,27 @@ public class NurseController {
 
         if (isUsernameExists) {
 
-            return "redirect:auth-register";
+            return "redirect:/nurses/register";
         }
 
-        nurseService.registerNurse(modelMapper.map(nurseRegisterBindingModel, NurseServiceModel.class));
 
-       // return "redirect:auth-register";
+       nurseService.registerNurse(nurseRegisterBindingModel);
+
        return "redirect:auth-login" ;
+
     }
 
    @GetMapping("/profile")
     public String getProfile(Principal principal, Model model){
         String username = principal.getName();
         NurseEntity nurse = nurseService.getNurse(username);
+       int size = nurse.getPatientList().size();
 
-        NurseProfileViewModel nurseProfileViewModel = new NurseProfileViewModel(
+       NurseProfileViewModel nurseProfileViewModel = new NurseProfileViewModel(
                 username,
                 nurse.getLastName(),
                 nurse.getWard().getName().name(),
-                nurse.getPatientList()
+               nurse.getPatientList()
         );
 
         model.addAttribute("nurse", nurseProfileViewModel);
@@ -79,17 +87,20 @@ public class NurseController {
 
     }
 
-   /* @GetMapping("/profile/{id}")
-    public String viewNurseProfileById(@PathVariable("id") Long id,
-                                      Model model) {
+  @GetMapping("/nurses/{id}")
+  public String getNurseById(@PathVariable("id") Long id){
+        throw new NurseNotFoundException(id);
 
-        NurseServiceModel nurseProfileViewModel = nurseService.findById(id);
+  }
 
-        model.addAttribute("nurseProfile", nurseProfileViewModel);
+  @ExceptionHandler(NurseNotFoundException.class)
+  public ModelAndView notFoundNurse(NurseNotFoundException nurseNotFoundException){
+  ModelAndView modelAndView = new ModelAndView("nurse-not-found");
+  modelAndView.addObject("id", nurseNotFoundException.getId());
 
-        return "profile-all-nurses";
-    }*/
+  return modelAndView;
 
+    }
 
 
     @ModelAttribute

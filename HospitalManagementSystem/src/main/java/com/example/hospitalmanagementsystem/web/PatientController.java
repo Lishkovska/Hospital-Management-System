@@ -1,5 +1,7 @@
 package com.example.hospitalmanagementsystem.web;
 
+import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundException;
+import com.example.hospitalmanagementsystem.exceptionHandler.PatientNotFoundException;
 import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.service.PatientServiceModel;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
@@ -7,11 +9,16 @@ import com.example.hospitalmanagementsystem.service.PatientService;
 import jakarta.validation.Valid;
 import org.hibernate.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/patient")
@@ -32,16 +39,42 @@ public class PatientController {
     @PostMapping("/register")
     public String registerPost(@Valid PatientRegisterBindingModel patientRegisterBindingModel,
                                BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes){
+                               RedirectAttributes redirectAttributes,
+                               @AuthenticationPrincipal UserDetails userDetails){
         if(bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("patientRegisterBindingModel",patientRegisterBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.patientRegisterBindingModel",
                     bindingResult);
 
-            return "redirect:register";
+            return "redirect:/patient/register";
         }
-        patientService.registerPatient(modelMapper.map(patientRegisterBindingModel, PatientServiceModel.class));
-        return "/index";
+     //   patientService.registerPatient(modelMapper.map(patientRegisterBindingModel, PatientServiceModel.class), userDetails);
+        patientService.registerPatient(patientRegisterBindingModel, userDetails);
+        return "redirect:/record/register";
+
+    }
+
+    @GetMapping("/all")
+    public String getAllPatients(Model model) {
+        List<PatientViewModel> patients= patientService.getAllPatients();
+
+        model.addAttribute("patients", patients);
+
+        return "patient-view-model";
+    }
+
+    @GetMapping("/{id}")
+    public Long getPatientById(@PathVariable("id") Long id){
+        throw new PatientNotFoundException(id);
+
+    }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ModelAndView notFoundNurse(PatientNotFoundException patientNotFoundException){
+        ModelAndView modelAndView = new ModelAndView("patient-not-found");
+        modelAndView.addObject("id", patientNotFoundException.getId());
+
+        return modelAndView;
 
     }
 

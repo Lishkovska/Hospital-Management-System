@@ -30,7 +30,7 @@ public class NurseEntity extends BaseEntity{
     @Column(name = "date_of_birth",nullable = false)
     private LocalDate dateOfBirth;
     @Column(nullable = false, name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
     @Column(nullable = false, name = "full_address", columnDefinition = "text")
     private String fullAddress;
     @Column(nullable = false, name = "professional_number", unique = true)
@@ -100,11 +100,11 @@ public class NurseEntity extends BaseEntity{
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

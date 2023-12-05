@@ -5,6 +5,8 @@ import com.example.hospitalmanagementsystem.models.enums.WardEnum;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class NurseRegisterBindingModel {
@@ -24,9 +26,8 @@ public class NurseRegisterBindingModel {
         private int age;
         @Past
         private LocalDate dateOfBirth;
-        @Positive
-       // @Digits()
-        private Integer phoneNumber;
+
+        private String phoneNumber;
         @NotNull
         private String fullAddress;
         @Positive
@@ -40,7 +41,22 @@ public class NurseRegisterBindingModel {
         @NotNull
         private WardEnum ward;
 
+        private List<Long> allNursesIDs = new ArrayList<>();
+
     public NurseRegisterBindingModel() {
+    }
+
+    public List<Long> getAllNursesIDs() {
+        return allNursesIDs;
+    }
+
+    public void setAllNursesIDs(List<Long> allNursesIDs) {
+        this.allNursesIDs = allNursesIDs;
+    }
+
+    public NurseRegisterBindingModel addNurseId(Long nurseId) {
+        this.allNursesIDs.add(nurseId);
+        return this;
     }
 
     public String getFirstName() {
@@ -92,15 +108,15 @@ public class NurseRegisterBindingModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getPhoneNumber() {
-            return phoneNumber;
-        }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-        public void setPhoneNumber(Integer phoneNumber) {
-            this.phoneNumber = phoneNumber;
-        }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-        public String getFullAddress() {
+    public String getFullAddress() {
             return fullAddress;
         }
 

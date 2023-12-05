@@ -25,10 +25,16 @@
                         <h5 class="mt-2 mb-0">Ward</h5>
                         <span th:text="*{ward}"> </span>
                         <h5 class="mt-2 mb-0">Patients</h5>
-                        <span th:text="*{patients.size()}"></span>
-                        <div class="buttons">
-                            <button class="btn btn-outline-primary px-4" href="/index" role="button">Back</button>
-                        </div>
+                        <span th:text="*{patients.size()}">
+
+                             <p class="lead">
+                            <a class="btn btn-success btn-lg" href="/current-records" role="button">Current medical records</a>
+                        </p>
+
+
+                        <p class="lead">
+                            <a class="btn btn-success btn-lg" href="/" role="button">Back</a>
+                        </p>
                     </div>
                 </div>
             </div>

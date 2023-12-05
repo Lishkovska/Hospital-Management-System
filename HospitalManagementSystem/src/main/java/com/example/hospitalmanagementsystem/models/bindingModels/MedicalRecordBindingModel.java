@@ -11,25 +11,25 @@ public class MedicalRecordBindingModel {
     @NotNull
     private String mainDiagnosis;
     private String pastConditions;
-    @NotNull
-    private boolean isSmoke;
-    @NotNull
-    private boolean isDrink;
-    @NotNull
-    private boolean isDiabetic;
-    @NotNull
-    private boolean isHighPressure;
-    @NotNull
+   // @NotNull
+    private boolean hasSmoke;
+  //  @NotNull
+    private boolean hasDrink;
+  //  @NotNull
+    private boolean hasDiabetic;
+  //  @NotNull
+    private boolean hasHighPressure;
+  //  @NotNull
     private boolean hasAllergies;
 
     private String nameOfAllergies;
-    @NotNull
+  //  @NotNull
     private boolean hasCurrentMedications;
     private String nameOfMedications;
-    @NotNull
+  //  @NotNull
     private String familyIlnessHistory;
     private String accompanyingIlness;
-    @NotNull
+   // @NotNull
     private boolean hasSurgicalProceduresInThePast;
     private String nameOfPatSurgicalProceduresAndDate;
     private String other;
@@ -64,39 +64,52 @@ public class MedicalRecordBindingModel {
         this.pastConditions = pastConditions;
     }
 
-    public boolean isSmoke() {
-        return isSmoke;
+
+    public boolean isHasSmoke() {
+        return hasSmoke;
     }
 
-    public void setSmoke(boolean smoke) {
-        isSmoke = smoke;
+    public void setHasSmoke(boolean hasSmoke) {
+        this.hasSmoke = hasSmoke;
     }
 
-    public boolean isDrink() {
-        return isDrink;
+    public boolean isHasDrink() {
+        return hasDrink;
     }
 
-    public void setDrink(boolean drink) {
-        isDrink = drink;
+    public void setHasDrink(boolean hasDrink) {
+        this.hasDrink = hasDrink;
     }
 
-    public boolean isDiabetic() {
-        return isDiabetic;
+    public boolean isHasDiabetic() {
+        return hasDiabetic;
     }
 
-    public void setDiabetic(boolean diabetic) {
-        isDiabetic = diabetic;
+    public void setHasDiabetic(boolean hasDiabetic) {
+        this.hasDiabetic = hasDiabetic;
     }
 
-    public boolean isHighPressure() {
-        return isHighPressure;
+    public boolean isHasHighPressure() {
+        return hasHighPressure;
     }
 
-    public void setHighPressure(boolean highPressure) {
-        isHighPressure = highPressure;
+    public void setHasHighPressure(boolean hasHighPressure) {
+        this.hasHighPressure = hasHighPressure;
     }
 
     public boolean isHasAllergies() {
+        return hasAllergies;
+    }
+
+    public boolean isHasCurrentMedications() {
+        return hasCurrentMedications;
+    }
+
+    public boolean isHasSurgicalProceduresInThePast() {
+        return hasSurgicalProceduresInThePast;
+    }
+
+    public boolean getHasAllergies() {
         return hasAllergies;
     }
 
@@ -112,7 +125,7 @@ public class MedicalRecordBindingModel {
         this.nameOfAllergies = nameOfAllergies;
     }
 
-    public boolean isHasCurrentMedications() {
+    public boolean getHasCurrentMedications() {
         return hasCurrentMedications;
     }
 
@@ -144,7 +157,7 @@ public class MedicalRecordBindingModel {
         this.accompanyingIlness = accompanyingIlness;
     }
 
-    public boolean isHasSurgicalProceduresInThePast() {
+    public boolean getHasSurgicalProceduresInThePast() {
         return hasSurgicalProceduresInThePast;
     }
 
