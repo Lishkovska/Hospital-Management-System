@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +44,9 @@ class PatientServiceImplTest {
     @Mock
     private  WardService wardServiceMock;
 
+    @Mock
+    private UserDetails userDetailsMock;
+
     @BeforeEach
     void setUp() {
         patientServiceToTest = new PatientServiceImpl(
@@ -65,19 +69,58 @@ class PatientServiceImplTest {
 
     @Test
     void findById_PatientNotFound_ReturnsNull() {
-        // Arrange
+
         Long patientId = 1L;
         when(patientRepositoryMock.findById(patientId)).thenReturn(Optional.empty());
 
-        // Act
         Patient result = patientServiceToTest.findById(patientId);
 
-        // Assertb
         assertNull(result);
     }
 
+    //ne raboti
+        @Test
+        void   testRegisterPatient ()  {
+        PatientRegisterBindingModel   bindingModel = new PatientRegisterBindingModel ();
+        bindingModel.setMenu(TypeOfMenu.diaryFree);
+        bindingModel.setWard(WardEnum.Cardiology);
+
+        Patient   patient = new Patient (); patient.setId( 1L );
+        patient.setFirstName( "Kevin" );
+        patient.setLastName( "Spacyy" );
+
+        NurseEntity nurse = new NurseEntity ();
+        nurse.setId( 1L );
+        nurse.setUsername( "Sisito" );
+
+        nurse = nurseServiceMock.findNurseByUsername(userDetailsMock.getUsername());
+        patient.setNurse(nurse);
+
+        patientRepositoryMock.saveAndFlush(patient);
+        nurse.getPatientList().add(patient);
+        nurseServiceMock.save(nurse);
+
+
+        Mockito.when(modelMapperMock.map(bindingModel, Patient.class)).thenReturn(patient);
+        Mockito.when(kitchenServiceMock.findByTypeOfMenu(TypeOfMenu.diaryFree)).
+                thenReturn( new KitchenCatering());
+
+        Mockito.when(wardServiceMock.findByWardNameEnum( WardEnum.Cardiology))
+                .thenReturn( new Ward());
+
+        Mockito.when(nurseServiceMock.findNurseByUsername( "Sisito" )).
+                thenReturn(nurse);
+
+        patientServiceToTest.registerPatient(bindingModel, userDetailsMock);
+        Mockito.verify(patientRepositoryMock,
+                Mockito.times( 1 )).saveAndFlush(patient);
+        Mockito.verify(nurseServiceMock, Mockito.times( 1 )).save(nurse); }
 
 
     }
+
+
+
+
 
 

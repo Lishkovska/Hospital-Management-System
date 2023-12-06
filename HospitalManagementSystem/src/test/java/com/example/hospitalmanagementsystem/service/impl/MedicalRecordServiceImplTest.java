@@ -66,28 +66,35 @@ class MedicalRecordServiceImplTest {
         // Arrange
         MedicalRecordBindingModel bindingModel = new MedicalRecordBindingModel();
         bindingModel.setHasDiabetic(true);
+        bindingModel.setHasSmoke(true);
+        bindingModel.setHasDrink(false);
+        bindingModel.setHasHighPressure(false);
+        bindingModel.setHasSurgicalProceduresInThePast(false);
         bindingModel.setHasAllergies(false);
         bindingModel.setPatientEgn("554412");
         bindingModel.setMainDiagnosis("test");
         bindingModel.setAccompanyingIlness("test");
         bindingModel.setHasCurrentMedications(false);
+        bindingModel.setPastConditions("test");
 
 
         MedicalRecord mappedMedicalRecord = new MedicalRecord();
         mappedMedicalRecord.setHasDiabetic(true);
         mappedMedicalRecord.setHasAllergies(false);
+        mappedMedicalRecord.setHasSmoke(true);
+        mappedMedicalRecord.setHasDrink(false);
+        mappedMedicalRecord.setHasHighPressure(false);
+        mappedMedicalRecord.setHasSurgicalProceduresInThePast(false);
         mappedMedicalRecord.setPatientEgn("554412");
         mappedMedicalRecord.setMainDiagnosis("test");
         mappedMedicalRecord.setAccompanyingIlness("test");
         mappedMedicalRecord.setHasCurrentMedications(false);
-
+        mappedMedicalRecord.setPastConditions("test");
 
         when(modelMapper.map(bindingModel, MedicalRecord.class)).thenReturn(mappedMedicalRecord);
 
-        // Act
         medicalRecordServiceToTest.registerRecord(bindingModel);
 
-        // Assert
         verify(medicalRecordRepository, times(1)).save(mappedMedicalRecord);
     }
 

@@ -37,7 +37,7 @@ class NurseLoginControllerTestIT {
 
 
 
-
+//ne raboti
     @Test
     @WithAnonymousUser
     void testLoginSuccess() throws Exception {

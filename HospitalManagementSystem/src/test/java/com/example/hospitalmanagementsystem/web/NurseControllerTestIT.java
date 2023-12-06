@@ -37,7 +37,7 @@ class NurseControllerTestIT {
     void tearDown() {
 
     }
-
+//ne raboti
     @Test
     void testRegisterNurseToBeSuccessfull() throws Exception{
         mockMvc.perform(
