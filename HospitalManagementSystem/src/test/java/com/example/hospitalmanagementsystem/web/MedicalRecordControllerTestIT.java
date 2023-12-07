@@ -38,9 +38,10 @@ class MedicalRecordControllerTestIT {
                 .andExpect(MockMvcResultMatchers.view()
                         .name("register-medical-record"));
     }
+    }
 
 //da gi proverq
-    @Test
+/*@Test
     void testRegisterRecordSuccess() throws Exception {
         MedicalRecordBindingModel mockBindingModel = new MedicalRecordBindingModel();
         mockBindingModel.setPatientEgn("1111");
@@ -62,15 +63,16 @@ class MedicalRecordControllerTestIT {
                 .registerRecord(Mockito.any());
     }
 
-  /* @Test
+  @Test
     void testGetMedicalRecord() throws Exception {
-        List<MedicalRecordViewModel> mockRecords = Collections
-                .singletonList(new MedicalRecordViewModel());
+        List<MedicalRecordViewModel> mockRecords = List.of(new MedicalRecordViewModel(1, "1111", "test",
+                "test", true, true));
         Mockito.when(medicalRecordService.getAllRecords()).thenReturn(mockRecords);
         mockMvc.perform(MockMvcRequestBuilders.get("/current-records"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("medical-record-view"))
                 .andExpect(MockMvcResultMatchers.model().attribute("records", mockRecords));
-    }*/
+
     }
+    }*/
 

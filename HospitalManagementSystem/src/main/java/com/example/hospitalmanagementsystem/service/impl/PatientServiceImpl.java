@@ -3,8 +3,6 @@ package com.example.hospitalmanagementsystem.service.impl;
 import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
 import com.example.hospitalmanagementsystem.models.entity.Patient;
-import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
-import com.example.hospitalmanagementsystem.models.service.PatientServiceModel;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.repository.PatientRepository;
 import com.example.hospitalmanagementsystem.service.KitchenService;
@@ -45,7 +43,6 @@ public class PatientServiceImpl implements PatientService {
         patient.setWard(wardService.findByWardNameEnum(patientRegisterBindingModel.getWard()));
         NurseEntity currentNurse = nurseService.findNurseByUsername(userDetails.getUsername());
         patient.setNurse(currentNurse);
-      //  patient.setNurse(nurseService.findByNurseId(patientServiceModel.getNurse().getId()));
 
         patientRepository.saveAndFlush(patient);
         currentNurse.getPatientList().add(patient);
@@ -59,10 +56,6 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findById(id)
                 .orElse(null);
     }
-
-
-//todo
-
 
 
 

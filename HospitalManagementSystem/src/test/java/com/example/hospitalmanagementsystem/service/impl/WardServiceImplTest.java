@@ -1,6 +1,7 @@
 package com.example.hospitalmanagementsystem.service.impl;
 
 import com.example.hospitalmanagementsystem.models.entity.Ward;
+import com.example.hospitalmanagementsystem.models.enums.TypeOfMenu;
 import com.example.hospitalmanagementsystem.models.enums.WardEnum;
 import com.example.hospitalmanagementsystem.repository.WardRepository;
 import com.example.hospitalmanagementsystem.service.NurseUserDetailService;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -47,10 +49,24 @@ void testExistWardName() {
     wardServiceToTest.findByWardNameEnum(WARD_ENUM);
 
     Assertions.assertEquals(wardEnumExist, wardTest.getName());
+}
+    @Test
+    public void testInitWardWhenRepositoryNotEmpty() {
+        Mockito.when(wardRepositoryMock.count()).thenReturn(1L);
 
+        wardServiceToTest.initWardName();
 
+        Mockito.verify(wardRepositoryMock, Mockito.never()).save(Mockito.any());
     }
 
+    @Test
+    public void testInitWardWhenRepositoryEmpty() {
+        Mockito.when(wardRepositoryMock.count()).thenReturn(0L);
 
+        wardServiceToTest.initWardName();
+
+        Mockito.verify(wardRepositoryMock, Mockito.times(WardEnum.values().length))
+                .save(Mockito.any());
+    }
 
 }

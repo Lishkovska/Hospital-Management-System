@@ -46,16 +46,4 @@ public class WardServiceImpl implements WardService {
                 .orElse(null);
     }
 
-   /* @Override
-    public List<WardViewModel> findAllPatientsAndCount() {
-        return wardRepository.findAllByAndCount()
-                .stream()
-                .map(ward -> {
-                    WardViewModel wardViewModel =  new WardViewModel();
-                    wardViewModel.setWard(ward.getName());
-                    wardViewModel.setCountOfPatients(ward.getPatientList().size());
-
-                    return wardViewModel;
-                }).collect(Collectors.toList());
-    } */
 }

@@ -39,7 +39,6 @@ class NurseLoginControllerTestIT {
 
 //ne raboti
     @Test
-    @WithAnonymousUser
     void testLoginSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/nurses/login-error")
                         .param("username", "Sisito")

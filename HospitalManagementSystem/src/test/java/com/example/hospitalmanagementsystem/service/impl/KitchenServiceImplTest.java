@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -47,7 +48,24 @@ class KitchenServiceImplTest {
         kitchenServiceToTest.findByTypeOfMenu(TYPE_OF_MENU);
 
         Assertions.assertEquals(typeOfMenuExist, kitchenCateringTest.getTypeOfMenu());
+    }
 
+    @Test
+    public void testInitTypeOfMenuWhenRepositoryNotEmpty() {
+        Mockito.when(kitchenRepositoryMock.count()).thenReturn(1L);
 
+        kitchenServiceToTest.initTypeOfMenu();
+
+        Mockito.verify(kitchenRepositoryMock, Mockito.never()).save(Mockito.any());
+    }
+
+    @Test
+    public void testInitTypeOfMenuWhenRepositoryEmpty() {
+        Mockito.when(kitchenRepositoryMock.count()).thenReturn(0L);
+
+        kitchenServiceToTest.initTypeOfMenu();
+
+        Mockito.verify(kitchenRepositoryMock, Mockito.times(TypeOfMenu.values().length))
+                .save(Mockito.any());
     }
 }

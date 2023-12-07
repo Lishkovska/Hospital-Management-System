@@ -3,7 +3,6 @@ package com.example.hospitalmanagementsystem.web;
 import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundException;
 import com.example.hospitalmanagementsystem.exceptionHandler.PatientNotFoundException;
 import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
-import com.example.hospitalmanagementsystem.models.service.PatientServiceModel;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.service.PatientService;
 import jakarta.validation.Valid;

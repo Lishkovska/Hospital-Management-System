@@ -7,6 +7,7 @@ import com.example.hospitalmanagementsystem.models.entity.Patient;
 import com.example.hospitalmanagementsystem.models.entity.Ward;
 import com.example.hospitalmanagementsystem.models.enums.TypeOfMenu;
 import com.example.hospitalmanagementsystem.models.enums.WardEnum;
+import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.repository.PatientRepository;
 import com.example.hospitalmanagementsystem.service.KitchenService;
 import com.example.hospitalmanagementsystem.service.NurseService;
@@ -21,6 +22,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -78,47 +81,49 @@ class PatientServiceImplTest {
         assertNull(result);
     }
 
-    //ne raboti
-        @Test
-        void   testRegisterPatient ()  {
-        PatientRegisterBindingModel   bindingModel = new PatientRegisterBindingModel ();
-        bindingModel.setMenu(TypeOfMenu.diaryFree);
-        bindingModel.setWard(WardEnum.Cardiology);
+    @Test
+    void testRegisterPatient() {
 
-        Patient   patient = new Patient (); patient.setId( 1L );
-        patient.setFirstName( "Kevin" );
-        patient.setLastName( "Spacyy" );
+        PatientRegisterBindingModel registerBindingModel = new PatientRegisterBindingModel();
+        registerBindingModel.setMenu(TypeOfMenu.diaryFree);
+        registerBindingModel.setWard(WardEnum.Cardiology);
 
-        NurseEntity nurse = new NurseEntity ();
-        nurse.setId( 1L );
-        nurse.setUsername( "Sisito" );
+        UserDetails userDetails = mock(UserDetails.class);
+        NurseEntity nurseEntity = mock(NurseEntity.class);
 
-        nurse = nurseServiceMock.findNurseByUsername(userDetailsMock.getUsername());
-        patient.setNurse(nurse);
-
-        patientRepositoryMock.saveAndFlush(patient);
-        nurse.getPatientList().add(patient);
-        nurseServiceMock.save(nurse);
+        Patient patient = new Patient();
+        patient.setNurse(nurseEntity);
 
 
-        Mockito.when(modelMapperMock.map(bindingModel, Patient.class)).thenReturn(patient);
-        Mockito.when(kitchenServiceMock.findByTypeOfMenu(TypeOfMenu.diaryFree)).
-                thenReturn( new KitchenCatering());
-
-        Mockito.when(wardServiceMock.findByWardNameEnum( WardEnum.Cardiology))
-                .thenReturn( new Ward());
-
-        Mockito.when(nurseServiceMock.findNurseByUsername( "Sisito" )).
-                thenReturn(nurse);
-
-        patientServiceToTest.registerPatient(bindingModel, userDetailsMock);
-        Mockito.verify(patientRepositoryMock,
-                Mockito.times( 1 )).saveAndFlush(patient);
-        Mockito.verify(nurseServiceMock, Mockito.times( 1 )).save(nurse); }
+        when(modelMapperMock.map(registerBindingModel, Patient.class)).thenReturn(patient);
+//when(kitchenServiceMock.findByTypeOfMenu(registerBindingModel.getMenu())).thenReturn("diaryFree");
+  //      when(wardServiceMock.findByWardNameEnum(registerBindingModel.getWard())).thenReturn();
+        when(nurseServiceMock.findNurseByUsername(userDetails.getUsername())).thenReturn(nurseEntity);
 
 
+        patientServiceToTest.registerPatient(registerBindingModel, userDetails);
+
+        verify(patientRepositoryMock, times(1)).saveAndFlush(patient);
+        verify(nurseEntity, times(1)).getPatientList();
+        verify(nurseServiceMock, times(1)).save(nurseEntity);
+
+
+        assertNull(patient.getMenu());
+        assertNull(patient.getWard());
+        assertEquals(nurseEntity, patient.getNurse());
     }
 
+    @Test
+    public void testRemovePatientById() {
+
+        Long patientIdToRemove = 1L;
+
+        patientServiceToTest.removePatientById(patientIdToRemove);
+
+        Mockito.verify(patientRepositoryMock, Mockito.times(1)).deleteById(patientIdToRemove);
+    }
+
+}
 
 
 

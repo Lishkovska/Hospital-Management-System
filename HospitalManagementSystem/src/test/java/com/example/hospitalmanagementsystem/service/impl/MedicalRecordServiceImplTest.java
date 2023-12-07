@@ -63,7 +63,7 @@ class MedicalRecordServiceImplTest {
 
     @Test
     void registerRecord_shouldSaveMedicalRecord() {
-        // Arrange
+
         MedicalRecordBindingModel bindingModel = new MedicalRecordBindingModel();
         bindingModel.setHasDiabetic(true);
         bindingModel.setHasSmoke(true);
@@ -100,7 +100,7 @@ class MedicalRecordServiceImplTest {
 
     @Test
     void getAllRecords_shouldReturnMedicalRecordViewModelList() {
-        // Arrange
+
         MedicalRecord record1 = new MedicalRecord();
         record1.setHasDiabetic(true);
         record1.setHasAllergies(false);
@@ -122,8 +122,7 @@ class MedicalRecordServiceImplTest {
         when(medicalRecordRepository.findAll()).thenReturn(medicalRecords);
 
         List<MedicalRecordViewModel> result = medicalRecordServiceToTest.getAllRecords();
-
-        // Assert
+        
         assertEquals(2, result.size());
         assertEquals(true, record1.isHasDiabetic());
         assertEquals("55555", record1.getPatientEgn());

@@ -39,11 +39,7 @@ public class KitchenServiceImpl implements KitchenService {
                 });
     }
 
-    @Override
-    public KitchenCatering findByNameMenuEnum(KitchenCatering typeOfMenu) {
-        return kitchenRepository.findByTypeOfMenu(typeOfMenu.getTypeOfMenu())
-                .orElse(null);
-    }
+
 
     @Override
     public KitchenCatering findByTypeOfMenu(TypeOfMenu menu) {

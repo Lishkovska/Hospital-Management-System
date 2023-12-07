@@ -6,6 +6,6 @@ import com.example.hospitalmanagementsystem.models.enums.TypeOfMenu;
 public interface KitchenService {
     void initTypeOfMenu();
 
-    KitchenCatering findByNameMenuEnum(KitchenCatering menu);
+    //KitchenCatering findByNameMenuEnum(KitchenCatering menu);
     KitchenCatering findByTypeOfMenu(TypeOfMenu menu);
 }

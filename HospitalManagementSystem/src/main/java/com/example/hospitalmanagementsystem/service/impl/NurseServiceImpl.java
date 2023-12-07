@@ -5,7 +5,6 @@ import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundExcept
 import com.example.hospitalmanagementsystem.models.bindingModels.NurseRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.NurseEntity;
 import com.example.hospitalmanagementsystem.models.enums.RoleEnum;
-import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
 import com.example.hospitalmanagementsystem.repository.NurseRepository;
 import com.example.hospitalmanagementsystem.repository.PatientRepository;
 import com.example.hospitalmanagementsystem.repository.UserRoleRepository;

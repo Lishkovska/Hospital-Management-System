@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HomeControllerTestIT {
     @Autowired
     private MockMvc mockMvc;
+
     @Test
     void testIndexPageGet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))

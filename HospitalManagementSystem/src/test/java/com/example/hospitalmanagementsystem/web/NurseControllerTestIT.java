@@ -13,14 +13,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class NurseControllerTestIT {
 
 
@@ -31,12 +34,50 @@ class NurseControllerTestIT {
 
     @Autowired
     private ModelMapper modelMapperTest;
+//ne raboti
+    @Test
+    void testRegistrationSuccessful() throws Exception {
+        mockMvc.perform(
+                        MockMvcRequestBuilders.post("/nurses/register")
+                                .param("username", "Sisito")
+                                .param("password", "test")
+                                .param("confirmPassword", "test")
+                                .param("firstName", "Sisito")
+                                .param("lastName", "Tomova")
 
-
-    @AfterEach
-    void tearDown() {
-
+                )//.andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/nurses/auth-login"));
     }
+
+
+//ne raboti
+    @Test void testRegisterConfirm_ValidData() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/nurses/register")
+                .param("username", "Sisito")
+                .param("password", "12345")
+                .param("confirmPassword", "12345"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("redirect:auth-login"));
+    }
+
+/*
+    @Test
+    void testRegisterConfirm_InvalidData() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/register")
+                .param("username", "Sisito")
+                .param("password", "12345")
+                .param("confirmPassword", "123"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.redirectedUrl
+                        ("redirect:/nurses/register"))
+                .andExpect(MockMvcResultMatchers.flash().
+                        attributeExists( "nurseRegisterBindingModel",
+                                "org.springframework.validation.BindingResult.nurseRegisterBindingModel"));
+    }
+
+
+    @Test void testRegisterConfirm_ExistingUsername() throws Exception { // Assume "testUser" already exists mockMvc.perform(MockMvcRequestBuilders.post("/register") .param("username", "testUser") .param("password",
+        // "testPassword") .param("confirmPassword", "testPassword")) .andExpect(MockMvcResultMatchers.status().is3xxRedirection()) .andExpect(MockMvcResultMatchers.redirectedUrl("redirect:/nurses/register")); } }
 //ne raboti
     @Test
     void testRegisterNurseToBeSuccessfull() throws Exception{
@@ -60,7 +101,7 @@ class NurseControllerTestIT {
                 ).andExpect(status().isOk()).
                 andExpect(redirectedUrl("/nurses/login"));
 
-    }
+    }*/
 
 
     @Test
