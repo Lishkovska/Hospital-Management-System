@@ -5,4 +5,4 @@ values
     (2, 'USER');
 
 INSERT INTO nurses_roles (nurse_id, role_id)
-values (2, 1);
+values (3, 1);

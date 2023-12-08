@@ -40,39 +40,5 @@ class MedicalRecordControllerTestIT {
     }
     }
 
-//da gi proverq
-/*@Test
-    void testRegisterRecordSuccess() throws Exception {
-        MedicalRecordBindingModel mockBindingModel = new MedicalRecordBindingModel();
-        mockBindingModel.setPatientEgn("1111");
-        mockMvc.perform(MockMvcRequestBuilders.post("/record/register")
-                .param("patientEgn", "1111"))
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("/"));
-        Mockito.verify(medicalRecordService,
-                Mockito.times(1)).registerRecord(mockBindingModel);
-    }
 
-    @Test
-    void testRegisterRecordValidationFail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/record/register"))
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("/record/register"));
-
-        Mockito.verify(medicalRecordService, Mockito.times(0))
-                .registerRecord(Mockito.any());
-    }
-
-  @Test
-    void testGetMedicalRecord() throws Exception {
-        List<MedicalRecordViewModel> mockRecords = List.of(new MedicalRecordViewModel(1, "1111", "test",
-                "test", true, true));
-        Mockito.when(medicalRecordService.getAllRecords()).thenReturn(mockRecords);
-        mockMvc.perform(MockMvcRequestBuilders.get("/current-records"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("medical-record-view"))
-                .andExpect(MockMvcResultMatchers.model().attribute("records", mockRecords));
-
-    }
-    }*/
 

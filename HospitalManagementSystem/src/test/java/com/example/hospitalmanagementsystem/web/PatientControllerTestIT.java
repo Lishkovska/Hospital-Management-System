@@ -1,80 +1,59 @@
 package com.example.hospitalmanagementsystem.web;
 
-import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
+import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.service.PatientService;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithAnonymousUser;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@SpringBootTest
 @AutoConfigureMockMvc
+@SpringBootTest
 class PatientControllerTestIT {
-
     @Autowired
     private MockMvc mockMvc;
 
-
-
-    @Autowired
+    @MockBean
     private PatientService patientService;
 
-  /*  @Test
-    @WithMockUser(username = "Sisito", password = "12345", roles = "USER")
-    public void testPatientRegistration() throws Exception {
-        PatientRegisterBindingModel patient = new PatientRegisterBindingModel();
-        patient.setEgn("112233");
-        patient.setAge(45);
-        patient.setBedNumber(1);
-        patient.setContactPersonFullName("test");
-        // Set patient details
-
-
-        ResultActions result = mockMvc.perform(post("/patient/register")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(patient)))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/record/register"));
-    }*/
+    //ne raaboti
 
     @Test
-    @WithMockUser(username = "Sisito", password = "12345", roles = "USER")
-    public void testGetAllPatients() throws Exception {
-        ResultActions result = mockMvc.perform(get("/patient/all"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("patient-view-model"))
-                .andExpect(model().attributeExists("patients"));
-
-        // Additional assertions if necessary
+    @WithMockUser
+    void testRegisterEndpoint() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/register"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("register-patient"));
     }
+
 
     @Test
-    @WithMockUser(username = "Sisito", password = "12345", roles = "USER")
-    public void testGetPatientByIdNotFound() throws Exception {
-        Long nonExistentPatientId = 100L;
+    @WithMockUser
+    void testGetAllPatientsEndpoint() throws Exception {
+        // Mock the service response
+        List<PatientViewModel> mockPatients = Arrays.asList(
+                new PatientViewModel(1L, "Test", "test", "Cardiology", "normal"),
+                new PatientViewModel(2L, "Jane", "Sstee", "Orthopedics", "normal")
+                // Add more mock data as needed
+        );
+        Mockito.when(patientService.getAllPatients()).thenReturn(mockPatients);
 
-        mockMvc.perform(get("/patient/{id}", nonExistentPatientId))
-                .andExpect(status().isNotFound())
-                .andExpect(view().name("patient-not-found"))
-                .andExpect(model().attribute("id", nonExistentPatientId));
-
-        // Additional assertions if necessary
+        // Perform the GET request
+        mockMvc.perform(MockMvcRequestBuilders.get("/all"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("patient-view-model"))
+                // You can add more assertions based on the expected behavior
+                .andExpect(MockMvcResultMatchers.model().attribute("patients", mockPatients));
     }
+
 }
-
-
-
-
-

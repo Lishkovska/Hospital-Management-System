@@ -33,9 +33,16 @@
             <a class="nav-link" href="/record/register">Register patient's medical record.</a>
             </li>
 
-            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link" href="/current-records">All records.</a>
+            <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link dropdown-toggle" href="/current-records" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/current-records">All records</a>
+                </div>
             </li>
+
 
             <li class="nav-item" sec:authorize="isAuthenticated()">
                 <div class="form-inline my-2 my-lg-0 border px-3">
@@ -69,7 +76,7 @@
         </ul>
     </div>
 </nav>
-<footer th:fragment="footer" class="container" >
+<footer th:fragment="footer"  class="fixed-bottom justify-content-center container">
     <p>&copy;St.Sophia hospital. All rights reserved.</p>
 </footer>
 </body>
