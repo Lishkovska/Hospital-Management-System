@@ -21,11 +21,11 @@ public class SecurityConfiguration {
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/nurses/register").permitAll()
-                       .requestMatchers("/", "/nurses/login","/ward",  "/nurses/test",
+                       .requestMatchers("/", "/nurses/login","/ward",
                               "/nurses/login-error").permitAll()
                         .requestMatchers("/record/register").permitAll()
                       .requestMatchers("/patient/all").hasRole(RoleEnum.ADMIN.name())
-                      .requestMatchers("/current-records").permitAll()
+                      .requestMatchers("/current-records").hasRole(RoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

@@ -84,7 +84,17 @@ public class PatientController {
 
         patientService.removePatientById(id);
 
+       return "redirect:/";
+        //return "discharge-patient";
+    }
+//todo
+    @PostMapping("/remove/{id}")
+    String removePatientPost(@PathVariable Long id) {
+
+        patientService.removePatientById(id);
+
         return "redirect:/";
+        //return "discharge-patient";
     }
 
     @ModelAttribute

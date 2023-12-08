@@ -33,14 +33,24 @@
             <a class="nav-link" href="/record/register">Register patient's medical record.</a>
             </li>
 
+
+
             <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
                 <a class="nav-link dropdown-toggle" href="/current-records" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin
+                    Patient - all records
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/current-records">All records</a>
+                    <a class="dropdown-item" href="/patient/all">All patients</a>
                 </div>
+            </li>
+
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" href="/patient/all">All patient.</a>
+            </li>
+
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" href="/patient/remove/">Discharge patient.</a>
             </li>
 
 
