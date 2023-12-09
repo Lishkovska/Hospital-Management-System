@@ -5,6 +5,6 @@ values
     (2, 'USER');
 
 INSERT INTO nurses_roles (nurse_id, role_id)
-values (3, 1);
+values (1, 1);
 
-delete from medical_records where id=1;
+delete from medical_records where id=2;

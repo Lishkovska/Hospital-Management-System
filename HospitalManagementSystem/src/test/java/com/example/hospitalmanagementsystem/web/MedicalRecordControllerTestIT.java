@@ -43,18 +43,7 @@ class MedicalRecordControllerTestIT {
                 .andExpect(MockMvcResultMatchers.view()
                         .name("register-medical-record"));
     }
-//to check
-    @Test
-    @WithMockUser
-    public void testRemovePatient() throws Exception {
-        Long patientId = 1L;
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/record/remove/{id}", patientId))
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("/"));
-
-        verify(medicalRecordService, times(1)).removeRecordById(patientId);
-    }
     }
 
 

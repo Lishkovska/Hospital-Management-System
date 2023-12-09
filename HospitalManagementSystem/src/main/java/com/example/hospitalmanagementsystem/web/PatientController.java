@@ -85,7 +85,7 @@ public class PatientController {
 
         patientService.removePatientById(id);
 
-       return "redirect:/";
+       return "redirect:/current-records";
 
     }
 

@@ -64,11 +64,9 @@
 
                             <div class="d-flex justify-content-center " th:each="r : ${records}">
                                 <p class="lead">
+                                    <a class="btn btn-danger btn-lg"
+                                       th:href="@{/record/remove/{id}(id = ${r.id})}">Delete</a>
 
-
-                                    <a class="btn btn-danger btn-lg" href="/patient/remove/"
-                                       role="button">Delete</a>
-                                    <a class="ml-3 p-3 text-warning" th:href="@{/record/remove/{id}(id = ${r.id})}"></a>
 
                                 </p>
                             </div>
