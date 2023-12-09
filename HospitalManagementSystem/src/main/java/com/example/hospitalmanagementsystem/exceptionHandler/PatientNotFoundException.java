@@ -8,7 +8,7 @@ public class PatientNotFoundException extends RuntimeException{
     private final Long id;
 
     public PatientNotFoundException(Long id) {
-        super("Nurse with id " + id + " not found!");
+        super("Patient with id " + id + " not found!");
         this.id = id;
     }
 
