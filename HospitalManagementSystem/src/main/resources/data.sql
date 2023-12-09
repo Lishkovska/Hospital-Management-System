@@ -6,3 +6,5 @@ values
 
 INSERT INTO nurses_roles (nurse_id, role_id)
 values (3, 1);
+
+delete from medical_records where id=1;

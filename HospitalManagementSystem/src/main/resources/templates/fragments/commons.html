@@ -34,20 +34,12 @@
             </li>
 
 
-
-            <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link dropdown-toggle" href="/current-records" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Patient - all records
-                </a>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link" href="/current-records">All records.</a>
             </li>
 
             <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                 <a class="nav-link" href="/patient/all">All patient.</a>
-            </li>
-
-            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link" href="patient/remove/{id}">Discharge patient</a>
             </li>
 
             <li class="nav-item" sec:authorize="isAuthenticated()">

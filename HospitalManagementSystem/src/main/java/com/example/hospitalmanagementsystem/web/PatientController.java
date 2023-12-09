@@ -79,7 +79,7 @@ public class PatientController {
     }
 
 
-//todo
+
    @GetMapping("/remove/{id}")
     String removePatient(@PathVariable Long id) {
 
@@ -88,9 +88,6 @@ public class PatientController {
        return "redirect:/";
 
     }
-
-
-
 
 
     @ModelAttribute

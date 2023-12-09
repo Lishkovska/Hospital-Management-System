@@ -27,6 +27,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/maintenance").permitAll()
                       .requestMatchers("/patient/all").hasRole(RoleEnum.ADMIN.name())
                       .requestMatchers("/current-records").hasRole(RoleEnum.ADMIN.name())
+                      .requestMatchers("/record/remove").hasRole(RoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

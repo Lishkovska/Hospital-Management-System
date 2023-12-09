@@ -23,8 +23,6 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     }
 
-
-
     @Override
     public void registerRecord(MedicalRecordBindingModel medicalRecordBindingModel) {
         MedicalRecord medicalRecord = modelMapper.map(medicalRecordBindingModel, MedicalRecord.class);
@@ -70,6 +68,11 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
                 record.getNameOfPatSurgicalProceduresAndDate(),
                 record.getOther()
         )).collect(Collectors.toList());
+    }
+
+    @Override
+    public void removeRecordById(Long id) {
+        medicalRecordRepository.deleteById(id);
     }
 
 

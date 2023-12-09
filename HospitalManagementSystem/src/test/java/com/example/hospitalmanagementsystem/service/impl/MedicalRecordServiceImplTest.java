@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
@@ -131,6 +132,15 @@ class MedicalRecordServiceImplTest {
         assertEquals(true, record1.isHasDiabetic());
         assertEquals("55555", record1.getPatientEgn());
 
+    }
+
+    @Test
+    public void testRemoveRecordById() {
+        Long recordId = 1L;
+
+        medicalRecordServiceToTest.removeRecordById(recordId);
+        
+        Mockito.verify(medicalRecordRepository, Mockito.times(1)).deleteById(recordId);
     }
 
 }
