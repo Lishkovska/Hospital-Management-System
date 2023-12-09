@@ -2,14 +2,11 @@ package com.example.hospitalmanagementsystem.service.impl;
 
 import com.example.hospitalmanagementsystem.models.entity.Ward;
 import com.example.hospitalmanagementsystem.models.enums.WardEnum;
-import com.example.hospitalmanagementsystem.models.view.WardViewModel;
 import com.example.hospitalmanagementsystem.service.WardService;
 import com.example.hospitalmanagementsystem.repository.WardRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class WardServiceImpl implements WardService {

@@ -76,6 +76,8 @@ class MedicalRecordServiceImplTest {
         bindingModel.setAccompanyingIlness("test");
         bindingModel.setHasCurrentMedications(false);
         bindingModel.setPastConditions("test");
+        bindingModel.setNameOfPatSurgicalProceduresAndDate("test");
+        bindingModel.setOther("other");
 
 
         MedicalRecord mappedMedicalRecord = new MedicalRecord();
@@ -90,6 +92,8 @@ class MedicalRecordServiceImplTest {
         mappedMedicalRecord.setAccompanyingIlness("test");
         mappedMedicalRecord.setHasCurrentMedications(false);
         mappedMedicalRecord.setPastConditions("test");
+        mappedMedicalRecord.setOther("test");
+        mappedMedicalRecord.setNameOfPatSurgicalProceduresAndDate("test");
 
         when(modelMapper.map(bindingModel, MedicalRecord.class)).thenReturn(mappedMedicalRecord);
 

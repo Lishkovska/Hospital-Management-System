@@ -18,7 +18,7 @@ class KitchenControllerTestIT {
 
         @Test
         @WithMockUser
-        void testRegisterEndpoint() throws Exception {
+        void testAllMenus() throws Exception {
             mockMvc.perform(MockMvcRequestBuilders.get("/kitchen/menu"))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.view().name("all-menus"));
@@ -26,7 +26,7 @@ class KitchenControllerTestIT {
 
         @Test
         @WithMockUser
-        void testNormalMenuEndpoint() throws Exception {
+        void testNormalMenu() throws Exception {
             mockMvc.perform(MockMvcRequestBuilders.get("/normal-diet"))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.view().name("normal-diet"));
@@ -34,7 +34,7 @@ class KitchenControllerTestIT {
 
         @Test
         @WithMockUser
-        void testPevznerEndpoint() throws Exception {
+        void testPevzner() throws Exception {
             mockMvc.perform(MockMvcRequestBuilders.get("/pevzner"))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.view().name("pevzner"));
@@ -42,7 +42,7 @@ class KitchenControllerTestIT {
 
         @Test
         @WithMockUser
-        void testSpecificDietEndpoint() throws Exception {
+        void testSpecificDiets() throws Exception {
             mockMvc.perform(MockMvcRequestBuilders.get("/milk-gluten-puree"))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.view().name("milk-gluten-puree"));

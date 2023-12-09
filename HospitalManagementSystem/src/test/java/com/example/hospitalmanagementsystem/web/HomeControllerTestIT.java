@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,6 +25,13 @@ class HomeControllerTestIT {
     void testIndexPageGet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(status().isOk()) .andExpect(view().name("index"));
+    }
+//ne raboti
+    @Test
+    public void testError() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/error"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("error"));
     }
 
 
