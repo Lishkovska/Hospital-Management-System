@@ -3,6 +3,7 @@ package com.example.hospitalmanagementsystem.web;
 import com.example.hospitalmanagementsystem.exceptionHandler.NurseNotFoundException;
 import com.example.hospitalmanagementsystem.exceptionHandler.PatientNotFoundException;
 import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
+import com.example.hospitalmanagementsystem.models.entity.Patient;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import com.example.hospitalmanagementsystem.service.PatientService;
 import jakarta.validation.Valid;
@@ -79,23 +80,18 @@ public class PatientController {
 
 
 //todo
-    @GetMapping("/remove/{id}")
+   @GetMapping("/remove/{id}")
     String removePatient(@PathVariable Long id) {
 
         patientService.removePatientById(id);
 
        return "redirect:/";
-        //return "discharge-patient";
-    }
-//todo
-    @PostMapping("/remove/{id}")
-    String removePatientPost(@PathVariable Long id) {
 
-        patientService.removePatientById(id);
-
-        return "redirect:/";
-        //return "discharge-patient";
     }
+
+
+
+
 
     @ModelAttribute
     public PatientRegisterBindingModel patientRegisterBindingModel(){

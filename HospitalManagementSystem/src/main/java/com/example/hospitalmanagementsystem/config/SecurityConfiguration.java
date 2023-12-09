@@ -24,6 +24,7 @@ public class SecurityConfiguration {
                        .requestMatchers("/", "/nurses/login","/ward",
                               "/nurses/login-error").permitAll()
                         .requestMatchers("/record/register").permitAll()
+                        .requestMatchers("/maintenance").permitAll()
                       .requestMatchers("/patient/all").hasRole(RoleEnum.ADMIN.name())
                       .requestMatchers("/current-records").hasRole(RoleEnum.ADMIN.name())
                         .anyRequest().authenticated()

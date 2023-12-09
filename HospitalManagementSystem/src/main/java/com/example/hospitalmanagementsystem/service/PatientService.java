@@ -2,8 +2,6 @@ package com.example.hospitalmanagementsystem.service;
 
 import com.example.hospitalmanagementsystem.models.bindingModels.PatientRegisterBindingModel;
 import com.example.hospitalmanagementsystem.models.entity.Patient;
-import com.example.hospitalmanagementsystem.models.service.NurseServiceModel;
-import com.example.hospitalmanagementsystem.models.service.PatientServiceModel;
 import com.example.hospitalmanagementsystem.models.view.PatientViewModel;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,4 +17,6 @@ public interface PatientService {
     List<PatientViewModel> getAllPatients();
 
     void registerPatient(PatientRegisterBindingModel patientRegisterBindingModel, UserDetails userDetails);
+
+  //  Patient getPatientById(Long id);
 }
