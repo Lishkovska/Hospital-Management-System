@@ -14,62 +14,57 @@
             <div class="col-md-7">
                 <div class="profile-card p-3 py-4">
                     <div class="text-center"><img src="/images/ward.jpg" width="100" ></div>
-                    <div style="background-color: #fdff90; color: blue; font-weight: bold"
+                    <div style="background-color: #fdff90; color: brown; font-weight: bold"
                          class="text-center mt-3"
                     >
-                        <h4 style="background-color: #fdff90; color: green; font-weight: bold"> All current patients </h4>
+                        <h4 style="background-color: #fdff90; color: #0c5460; font-weight: bold"> All current patients </h4>
 
                         <section class="road" th:each="r : ${ records}" th:object="${r}">
 
-                            <h5 class="mt-4 mb-0">Patient egn</h5>
+                            <h5 class="mt-4 mb-0 text-dark">Patient egn</h5>
                             <span th:text="*{patientEgn}">  </span>
-                            <h5 class="mt-2 mb-0">Main diagnosis</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Main diagnosis</h5>
                             <span th:text="*{mainDiagnosis}">  </span>
-                            <h5 class="mt-2 mb-0">Past condititons</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Past condititons</h5>
                             <span th:text="*{pastConditions}"> </span>
-                            <h5 class="mt-2 mb-0">Has smoke?</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Has smoke?</h5>
                             <span th:text="*{hasSmoke}"></span>
 
-                            <h5 class="mt-4 mb-0">Has drink?</h5>
+                            <h5 class="mt-4 mb-0 text-dark">Has drink?</h5>
                             <span th:text="*{hasDrink}">  </span>
-                            <h5 class="mt-2 mb-0">Has diabetic?</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Has diabetic?</h5>
                             <span th:text="*{hasDiabetic}">  </span>
-                            <h5 class="mt-2 mb-0">Has high pressure</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Has high pressure</h5>
                             <span th:text="*{hasHighPressure}"> </span>
-                            <h5 class="mt-2 mb-0">Has allergies?</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Has allergies?</h5>
                             <span th:text="*{hasAllergies}"></span>
 
-                            <h5 class="mt-4 mb-0">Name of allergies</h5>
+                            <h5 class="mt-4 mb-0 text-dark">Name of allergies</h5>
                             <span th:text="*{nameOfAllergies}">  </span>
-                            <h5 class="mt-2 mb-0">Does he/she take current medications ?></h5>
+                            <h5 class="mt-2 mb-0 text-dark">Does he/she take current medications ?></h5>
                             <span th:text="*{hasCurrentMedications}">  </span>
-                            <h5 class="mt-2 mb-0">Name them</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Name them</h5>
                             <span th:text="*{nameOfMedications}"> </span>
-                            <h5 class="mt-2 mb-0">Family ilness history </h5>
+                            <h5 class="mt-2 mb-0 text-dark">Family ilness history </h5>
                             <span th:text="*{familyIlnessHistory}"></span>
 
-                            <h5 class="mt-4 mb-0">Name of accompanying ilness</h5>
+                            <h5 class="mt-4 mb-0 text-dark">Name of accompanying ilness</h5>
                             <span th:text="*{accompanyingIlness}">  </span>
-                            <h5 class="mt-2 mb-0">Has surgical procedures in the past ?></h5>
+                            <h5 class="mt-2 mb-0 text-dark">Has surgical procedures in the past ?></h5>
                             <span th:text="*{hasSurgicalProceduresInThePast}">  </span>
-                            <h5 class="mt-2 mb-0">Name them.</h5>
+                            <h5 class="mt-2 mb-0 text-dark">Name them.</h5>
                             <span th:text="*{nameOfPatSurgicalProceduresAndDate}"> </span>
-                            <h5 class="mt-2 mb-0">Other </h5>
+                            <h5 class="mt-2  text-dark">Other </h5>
                             <span th:text="*{other}"></span>
+                            <h5 class="mt-2 mb-0"></h5>
+                            <span  class="btn btn-danger btn-lg"
+                                      th:href="@{/record/remove/{id}(id = ${r.id})}">Delete</span>
 
 
                             <p class="lead">
                                 <a class="btn btn-success btn-lg" href="/" role="button">Back</a>
                             </p>
 
-                            <div class="d-flex justify-content-center " th:each="r : ${records}">
-                                <p class="lead">
-                                    <a class="btn btn-danger btn-lg"
-                                       th:href="@{/record/remove/{id}(id = ${r.id})}">Delete</a>
-
-
-                                </p>
-                            </div>
                         </section>
                     </div>
 

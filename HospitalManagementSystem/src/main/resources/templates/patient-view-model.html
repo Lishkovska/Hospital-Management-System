@@ -26,6 +26,7 @@
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Ward</th>
                                     <th scope="col">Menu</th>
+                                    <th scope="col">Button</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,6 +35,8 @@
                                     <td th:text="${p.lastName}"></td>
                                     <td th:text="${p.ward}"></td>
                                     <td th:text="${p.menu}"></td>
+                                    <td  class="btn btn-danger btn-lg"
+                                            th:href="@{/patient/remove/{id}(id = ${p.id})}">Discharge</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -45,14 +48,6 @@
                     </p>
                 </div>
 
-                    <div class="d-flex justify-content-center " th:each="p : ${patients}">
-                        <p class="lead">
-                            <a class="btn btn-danger btn-lg"
-                               th:href="@{/patient/remove/{id}(id = ${p.id})}">Discharge</a>
-
-
-                        </p>
-                    </div>
                 </div>
             </t>
 
